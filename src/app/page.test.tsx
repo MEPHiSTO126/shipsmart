@@ -5,7 +5,7 @@ describe('Home Page', () => {
   it('renders start editing message', () => {
     render(<Home />);
     expect(
-      screen.getByText(/To get started, edit the page.tsx file./i)
+      screen.getByText(/To get started, edit the page.tsx file./i),
     ).toBeInTheDocument();
   });
 
@@ -20,7 +20,7 @@ describe('Home Page', () => {
         trackingNumber: 'SLT-204891',
         status: 'in_transit',
         customerName: 'Ada Okafor',
-      })
+      }),
     );
   });
 });

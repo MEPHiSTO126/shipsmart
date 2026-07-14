@@ -164,7 +164,7 @@ export const handlers = [
       filtered = filtered.filter(
         (s) =>
           s.trackingNumber.toLowerCase().includes(lower) ||
-          s.customerName.toLowerCase().includes(lower)
+          s.customerName.toLowerCase().includes(lower),
       );
     }
 
@@ -182,10 +182,15 @@ export const handlers = [
   // 2. GET /shipments/:trackingNumber
   http.get('*/api/shipments/:trackingNumber', ({ params }) => {
     const { trackingNumber } = params;
-    const shipment = mockShipments.find((s) => s.trackingNumber === trackingNumber);
+    const shipment = mockShipments.find(
+      (s) => s.trackingNumber === trackingNumber,
+    );
 
     if (!shipment) {
-      return new HttpResponse(null, { status: 404, statusText: 'Shipment Not Found' });
+      return new HttpResponse(null, {
+        status: 404,
+        statusText: 'Shipment Not Found',
+      });
     }
 
     return HttpResponse.json(shipment);
@@ -200,34 +205,42 @@ export const handlers = [
   }),
 
   // 4. PATCH /shipments/:trackingNumber/status
-  http.patch('*/api/shipments/:trackingNumber/status', async ({ params, request }) => {
-    const { trackingNumber } = params;
-    const body = (await request.json()) as { status: string };
+  http.patch(
+    '*/api/shipments/:trackingNumber/status',
+    async ({ params, request }) => {
+      const { trackingNumber } = params;
+      const body = (await request.json()) as { status: string };
 
-    const shipmentIndex = mockShipments.findIndex((s) => s.trackingNumber === trackingNumber);
-    if (shipmentIndex === -1) {
-      return new HttpResponse(null, { status: 404, statusText: 'Shipment Not Found' });
-    }
+      const shipmentIndex = mockShipments.findIndex(
+        (s) => s.trackingNumber === trackingNumber,
+      );
+      if (shipmentIndex === -1) {
+        return new HttpResponse(null, {
+          status: 404,
+          statusText: 'Shipment Not Found',
+        });
+      }
 
-    // Update status in mock memory database
-    mockShipments[shipmentIndex] = {
-      ...mockShipments[shipmentIndex],
-      status: body.status,
-      lastUpdated: new Date().toISOString(),
-    };
+      // Update status in mock memory database
+      mockShipments[shipmentIndex] = {
+        ...mockShipments[shipmentIndex],
+        status: body.status,
+        lastUpdated: new Date().toISOString(),
+      };
 
-    // Append a new event to the timeline
-    if (!mockEvents[trackingNumber as string]) {
-      mockEvents[trackingNumber as string] = [];
-    }
-    mockEvents[trackingNumber as string].push({
-      id: `event-${Date.now()}`,
-      status: body.status,
-      description: `Status advanced to ${body.status.replace('_', ' ')}`,
-      timestamp: new Date().toISOString(),
-      location: mockShipments[shipmentIndex].destination,
-    });
+      // Append a new event to the timeline
+      if (!mockEvents[trackingNumber as string]) {
+        mockEvents[trackingNumber as string] = [];
+      }
+      mockEvents[trackingNumber as string].push({
+        id: `event-${Date.now()}`,
+        status: body.status,
+        description: `Status advanced to ${body.status.replace('_', ' ')}`,
+        timestamp: new Date().toISOString(),
+        location: mockShipments[shipmentIndex].destination,
+      });
 
-    return HttpResponse.json(mockShipments[shipmentIndex]);
-  }),
+      return HttpResponse.json(mockShipments[shipmentIndex]);
+    },
+  ),
 ];
