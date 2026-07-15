@@ -57,23 +57,23 @@ export function ShipmentTable({
       <Table stickyHeader>
         <TableHeader>
           <TableRow>
-            <TableHead sortable onSort={() => {}}>
+            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
               Tracking
             </TableHead>
-            <TableHead sortable onSort={() => {}}>
+            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
               Customer
             </TableHead>
-            <TableHead>Origin</TableHead>
-            <TableHead>Destination</TableHead>
-            <TableHead sortable onSort={() => {}}>
+            <TableHead className="text-slate-300 font-semibold">Origin</TableHead>
+            <TableHead className="text-slate-300 font-semibold">Destination</TableHead>
+            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
               Status
             </TableHead>
-            <TableHead sortable onSort={() => {}}>
+            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
               Est. Delivery
             </TableHead>
-            <TableHead>Courier</TableHead>
-            <TableHead>Priority</TableHead>
-            <TableHead sortable onSort={() => {}}>
+            <TableHead className="text-slate-300 font-semibold">Courier</TableHead>
+            <TableHead className="text-slate-300 font-semibold">Priority</TableHead>
+            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
               Last Update
             </TableHead>
           </TableRow>
@@ -88,7 +88,9 @@ export function ShipmentTable({
               <TableRow
                 key={shipment.id}
                 onClick={() => onSelect(shipment.trackingNumber)}
-                className={`cursor-pointer transition-colors ${isSelected ? 'bg-blue-50' : ''}`}
+                className={`cursor-pointer transition-colors shipment-row ${
+                  isSelected ? 'bg-blue-500/10' : 'hover:bg-white/[0.04]'
+                }`}
               >
                 <TableCell className="font-mono font-medium">
                   {shipment.trackingNumber}
@@ -110,7 +112,7 @@ export function ShipmentTable({
                     {priorityConfig.label}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-gray-500">
+                <TableCell className="text-slate-400 font-medium">
                   {formatDistanceToNow(shipment.lastUpdated, {
                     addSuffix: true,
                   })}

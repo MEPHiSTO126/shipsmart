@@ -22,6 +22,8 @@ import { Container } from '@/components/layout/Container';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { TrackingNumber } from '@/features/shipment-tracking/domain/value-objects/tracking-number';
 import { motion } from 'framer-motion';
+import { useToast } from '@/components/feedback/Toast';
+import { SHIPMENT_STATUS_LABELS } from '@/constants/shipment-status';
 
 interface ShipmentDetailContentProps {
   trackingNumber: string;
@@ -48,6 +50,7 @@ export function ShipmentDetailContent({
     nextStatuses.length > 0
   );
   const isMutating = Boolean(advanceMutation.isPending);
+  const toast = useToast();
 
   if (shipmentLoading || eventsLoading) {
     return <DetailSkeleton />;
@@ -87,8 +90,27 @@ export function ShipmentDetailContent({
   const handleAdvanceStatus = async (newStatus: ShipmentStatus) => {
     try {
       await advanceMutation.mutateAsync({ trackingNumber: tn, newStatus });
+      toast.success(
+        `Status updated to "${SHIPMENT_STATUS_LABELS[newStatus]}"`,
+      );
     } catch (err) {
-      console.error('Failed to advance status:', err);
+      const message =
+        err instanceof Error ? err.message : 'Failed to update status';
+      const isInvalidTransition = message.toLowerCase().includes('invalid') ||
+        (err instanceof Error && (err as { status?: number }).status === 400);
+      toast.error(
+        isInvalidTransition
+          ? 'This status transition is not allowed.'
+          : 'Failed to update status. Please try again.',
+        {
+          action: isInvalidTransition
+            ? undefined
+            : {
+                label: 'Retry',
+                onClick: () => handleAdvanceStatus(newStatus),
+              },
+        },
+      );
     }
   };
 

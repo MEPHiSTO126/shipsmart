@@ -40,5 +40,17 @@ export {
 export { EmptyState } from './EmptyState';
 export { ErrorState } from './ErrorState';
 
+export { CurvedInput } from './CurvedInput';
+export type { CurvedInputProps } from './CurvedInput';
+
+export { LiquidChrome } from './LiquidChrome';
+export type { LiquidChromeProps } from './LiquidChrome';
+
+export { DecryptedText } from './DecryptedText';
+export type { DecryptedTextProps } from './DecryptedText';
+
+export { TargetCursor } from './TargetCursor';
+export type { TargetCursorProps } from './TargetCursor';
+
 export { default as SpecularButton } from './SpecularButton';
 export type { SpecularButtonProps } from './SpecularButton';

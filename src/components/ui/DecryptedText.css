@@ -1,0 +1,15 @@
+.decrypted-text-wrapper {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.decrypted-text-wrapper span {
+  display: inline-block;
+  transition: opacity 0.05s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decrypted-text-wrapper span {
+    transition: none;
+  }
+}

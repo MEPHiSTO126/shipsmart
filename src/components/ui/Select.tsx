@@ -37,10 +37,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={selectId}
           className={twMerge(
-            'w-full rounded-lg border px-3 py-2 shadow-sm',
-            'focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none',
-            'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500',
-            error ? 'border-red-500' : 'border-gray-300',
+            'w-full cursor-pointer rounded-lg border bg-white/[0.06] px-3 py-2 text-slate-100 shadow-sm backdrop-blur-sm',
+            'focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/30 focus:outline-none transition-colors',
+            'disabled:cursor-not-allowed disabled:opacity-50',
+            '[&>option]:bg-[#1a1f4e] [&>option]:text-slate-100',
+            error ? 'border-red-500/60' : 'border-white/10',
             className,
           )}
           aria-invalid={error ? 'true' : 'false'}

@@ -1,8 +1,8 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
-interface PageHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  title: string;
-  description?: string;
+interface PageHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
+  title: React.ReactNode;
+  description?: React.ReactNode;
   actions?: React.ReactNode;
 }
 
@@ -14,8 +14,8 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
       {...props}
     >
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
-        {description && <p className="mt-1 text-gray-500">{description}</p>}
+        <h1 className="text-3xl font-bold text-white">{title}</h1>
+        {description && <p className="mt-1 text-slate-400">{description}</p>}
         {children && <div className="mt-4">{children}</div>}
       </div>
       {actions && (

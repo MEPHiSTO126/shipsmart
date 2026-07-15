@@ -71,7 +71,7 @@ export function ShipmentCard({
             <p className="mt-2 truncate text-sm font-medium text-gray-900">
               {shipment.customerName}
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-gray-600">
               <span className="flex items-center gap-1">
                 <svg
                   className="h-4 w-4"
@@ -127,7 +127,7 @@ export function ShipmentCard({
                 {shipment.courier.name}
               </span>
             </div>
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="mt-2 text-xs text-gray-600">
               Updated{' '}
               {formatDistanceToNow(shipment.lastUpdated, { addSuffix: true })}
             </p>

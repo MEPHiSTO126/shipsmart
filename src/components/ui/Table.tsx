@@ -13,7 +13,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
           ref={ref}
           className={twMerge(
             'w-full caption-bottom text-sm',
-            stickyHeader && 'sticky-header',
+            stickyHeader && '[&_thead]:sticky [&_thead]:top-0 [&_thead]:bg-gray-900',
             className,
           )}
           {...props}
@@ -33,7 +33,7 @@ export const TableHeader = forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={twMerge('[&_tr]:border-b', className)}
+    className={twMerge('[&_tr]:border-b [&_tr]:border-white/10', className)}
     {...props}
   />
 ));

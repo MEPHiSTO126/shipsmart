@@ -9,7 +9,7 @@ interface DashboardStatsProps {
 const ICONS = {
   total: (
     <svg
-      className="h-8 w-8"
+      className="h-8 w-8 text-blue-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const ICONS = {
   ),
   inTransit: (
     <svg
-      className="h-8 w-8"
+      className="h-8 w-8 text-indigo-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ const ICONS = {
   ),
   delayed: (
     <svg
-      className="h-8 w-8"
+      className="h-8 w-8 text-red-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -60,7 +60,7 @@ const ICONS = {
   ),
   outForDelivery: (
     <svg
-      className="h-8 w-8"
+      className="h-8 w-8 text-amber-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ const ICONS = {
   ),
   delivered: (
     <svg
-      className="h-8 w-8"
+      className="h-8 w-8 text-green-600"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

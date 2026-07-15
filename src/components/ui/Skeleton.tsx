@@ -34,7 +34,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
       <div
         ref={ref}
         className={twMerge(
-          'animate-pulse bg-gray-200',
+          'skeleton',
           variants[variant],
           className,
         )}

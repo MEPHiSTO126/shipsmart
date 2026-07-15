@@ -12,6 +12,8 @@ import { ErrorState } from '@/components/ui';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { Container } from '@/components/layout/Container';
 import { getUniqueDestinations } from '@/features/shipment-tracking/application/use-cases/filter-shipments.use-case';
+import Image from 'next/image';
+import { DecryptedText } from '@/components/ui/DecryptedText';
 
 export function ShipmentsContent() {
   const { filters, sort, hasActiveFilters } = useURLFilters();
@@ -70,8 +72,28 @@ export function ShipmentsContent() {
   return (
     <Container>
       <PageHeader
-        title="Shipments Dashboard"
-        description="Monitor and manage all shipments across the network"
+        title={
+          <Image
+            src="/app-logo.png"
+            alt="ShipSmart Logo"
+            width={180}
+            height={40}
+            className="cursor-target"
+            style={{ objectFit: 'contain' }}
+          />
+        }
+        description={
+          <DecryptedText
+            text="Monitor and manage all shipments across the network"
+            animateOn="view"
+            revealDirection="center"
+            speed={40}
+            maxIterations={15}
+            sequential={true}
+            className="text-gray-600"
+            parentClassName="inline-block"
+          />
+        }
         actions={
           <span className="flex items-center gap-2">
             {isFetching && (
@@ -106,8 +128,8 @@ export function ShipmentsContent() {
 
       {!summaryLoading && summary && <DashboardStats summary={summary} />}
 
-      <div className="mt-6 rounded-lg border bg-white shadow-sm">
-        <div className="border-b p-4">
+      <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] shadow-xl shadow-black/30 backdrop-blur-md">
+        <div className="border-b border-white/10 p-4">
           <FilterBar destinations={destinations} />
         </div>
         <div className="p-4">

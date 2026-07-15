@@ -2,23 +2,29 @@ import { HTMLAttributes, forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'hover' | 'bordered';
+  variant?: 'default' | 'hover' | 'bordered' | 'elevated' | 'glass';
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
     const variants = {
-      default: 'bg-white shadow-sm',
+      default:
+        'bg-white/[0.055] border border-white/10 backdrop-blur-md',
       hover:
-        'bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer',
-      bordered: 'bg-white border border-gray-200',
+        'bg-white/[0.055] border border-white/10 backdrop-blur-md transition-all duration-200 hover:bg-white/[0.085] hover:border-white/20 hover:shadow-lg hover:shadow-purple-900/20 cursor-pointer',
+      bordered:
+        'bg-white/[0.04] border border-white/[0.12]',
+      elevated:
+        'bg-white/[0.06] border border-white/[0.12] shadow-xl shadow-black/30 backdrop-blur-md',
+      glass:
+        'bg-white/[0.07] border border-white/[0.15] backdrop-blur-xl shadow-lg shadow-black/20',
     };
 
     return (
       <div
         ref={ref}
         className={twMerge(
-          'overflow-hidden rounded-lg',
+          'overflow-hidden rounded-xl',
           variants[variant],
           className,
         )}
@@ -31,13 +37,14 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 );
 Card.displayName = 'Card';
 
+
 export const CardHeader = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={twMerge('border-b border-gray-100 px-6 py-4', className)}
+    className={twMerge('border-b border-white/10 px-6 py-4', className)}
     {...props}
   />
 ));
@@ -49,7 +56,7 @@ export const CardTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={twMerge('text-lg font-semibold text-gray-900', className)}
+    className={twMerge('text-lg font-semibold text-slate-100', className)}
     {...props}
   />
 ));
@@ -61,7 +68,7 @@ export const CardDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={twMerge('mt-1 text-sm text-gray-500', className)}
+    className={twMerge('mt-1 text-sm text-slate-400', className)}
     {...props}
   />
 ));
@@ -82,7 +89,7 @@ export const CardFooter = forwardRef<
   <div
     ref={ref}
     className={twMerge(
-      'border-t border-gray-100 bg-gray-50 px-6 py-4',
+      'border-t border-white/10 bg-white/[0.03] px-6 py-4',
       className,
     )}
     {...props}
