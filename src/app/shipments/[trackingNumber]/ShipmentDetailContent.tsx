@@ -47,7 +47,7 @@ export function ShipmentDetailContent({
     !isTerminalStatus(shipment.status) &&
     nextStatuses.length > 0
   );
-  const isMutating = advanceMutation.isPending;
+  const isMutating = Boolean(advanceMutation.isPending);
 
   if (shipmentLoading || eventsLoading) {
     return <DetailSkeleton />;

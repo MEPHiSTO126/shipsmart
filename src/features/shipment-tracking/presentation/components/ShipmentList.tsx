@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Shipment } from '@/features/shipment-tracking/domain';
 import { ShipmentTable } from './ShipmentTable';
 import { ShipmentCard } from './ShipmentCard';
@@ -107,15 +108,30 @@ export function ShipmentList({
       selectedId={selectedId}
     />
   ) : (
-    <div className="space-y-3">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { transition: { staggerChildren: 0.1 } },
+      }}
+      className="space-y-3"
+    >
       {shipments.map((shipment) => (
-        <ShipmentCard
+        <motion.div
           key={shipment.id}
-          shipment={shipment}
-          onSelect={onSelect}
-          isSelected={selectedId === shipment.trackingNumber}
-        />
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+          }}
+        >
+          <ShipmentCard
+            shipment={shipment}
+            onSelect={onSelect}
+            isSelected={selectedId === shipment.trackingNumber}
+          />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

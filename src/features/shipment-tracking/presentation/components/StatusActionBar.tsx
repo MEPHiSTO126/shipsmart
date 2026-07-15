@@ -1,6 +1,6 @@
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { SHIPMENT_STATUS_LABELS } from '@/constants/shipment-status';
-import { SpecularButton } from '@/components/ui';
+import { Button } from '@/components/ui';
 
 interface StatusActionBarProps {
   currentStatus: ShipmentStatus;
@@ -43,8 +43,9 @@ export function StatusActionBar({
       </p>
       <div className="flex flex-wrap gap-2">
         {nextStatuses.map((status) => (
-          <SpecularButton
+          <Button
             key={status}
+            variant="primary"
             size="md"
             onClick={() => onAdvance(status)}
             disabled={isMutating}
@@ -52,7 +53,7 @@ export function StatusActionBar({
             className="w-full sm:w-auto"
           >
             → {SHIPMENT_STATUS_LABELS[status].replace('_', ' ')}
-          </SpecularButton>
+          </Button>
         ))}
       </div>
     </div>
