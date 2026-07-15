@@ -58,7 +58,7 @@ export const TableRow = forwardRef<
   <tr
     ref={ref}
     className={twMerge(
-      'border-b transition-colors hover:bg-gray-50 data-[state=selected]:bg-blue-50',
+      'border-b border-white/10 transition-colors hover:bg-white/[0.04] data-[state=selected]:bg-blue-500/10',
       className,
     )}
     {...props}
@@ -77,8 +77,8 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
     <th
       ref={ref}
       className={twMerge(
-        'h-12 px-4 text-left align-middle font-medium text-gray-500',
-        sortable && 'cursor-pointer select-none hover:bg-gray-100',
+        'h-12 px-4 text-left align-middle font-medium text-slate-400 transition-all duration-200',
+        sortable && 'cursor-pointer select-none hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-indigo-500/10 hover:text-blue-300',
         className,
       )}
       onClick={sortable ? onSort : undefined}
