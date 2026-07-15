@@ -60,3 +60,13 @@ export function isInvalidTransitionError(
 ): error is InvalidStatusTransitionError {
   return error instanceof InvalidStatusTransitionError;
 }
+
+export class RepositoryError extends DomainError {
+  constructor(
+    message: string,
+    public readonly cause?: Error,
+  ) {
+    super(message, 'REPOSITORY_ERROR');
+    this.name = 'RepositoryError';
+  }
+}
