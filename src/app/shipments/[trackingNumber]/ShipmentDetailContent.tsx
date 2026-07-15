@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   useShipment,
@@ -118,12 +119,23 @@ export function ShipmentDetailContent({
   };
 
   return (
-    <Container>
+    <Container className="py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
+        <div className="mb-6">
+          <Link href="/shipments" className="inline-block transition-opacity hover:opacity-80">
+            <Image
+              src="/app-logo.png"
+              alt="ShipSmart Logo"
+              width={140}
+              height={32}
+              style={{ objectFit: 'contain' }}
+            />
+          </Link>
+        </div>
         <PageHeader
           title={`Shipment ${shipment.trackingNumber}`}
           description={shipment.customerName}
