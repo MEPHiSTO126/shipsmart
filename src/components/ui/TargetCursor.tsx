@@ -205,8 +205,14 @@ export function TargetCursor({
         current = current.parentElement;
       }
       const target = allTargets[0] || null;
-      if (!target || !cursorRef.current || !cornersRef.current) return;
       if (activeTarget === target) return;
+
+      if (!target) {
+        if (activeTarget) cleanupTarget();
+        return;
+      }
+
+      if (!cursorRef.current || !cornersRef.current) return;
       if (activeTarget) cleanupTarget();
       if (resumeTimeout) {
         clearTimeout(resumeTimeout);
@@ -342,7 +348,6 @@ export function TargetCursor({
       };
 
       cleanupFnRef.current = leaveHandler;
-      target.addEventListener('mouseleave', leaveHandler);
     };
 
     window.addEventListener('mouseover', enterHandler, { passive: true });
