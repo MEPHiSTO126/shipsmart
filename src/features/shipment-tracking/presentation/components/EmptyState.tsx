@@ -1,4 +1,3 @@
-
 interface EmptyStateProps {
   message: string;
   description?: string;

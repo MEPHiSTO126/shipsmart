@@ -1,5 +1,5 @@
 import { Input, Select, Button } from '@/components/ui';
-import { useShipmentFilters } from '@/features/shipment-tracking/presentation/hooks/useShipmentFilters';
+import { useURLFilters } from '@/features/shipment-tracking/presentation/hooks/useURLFilters';
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { ShipmentPriority } from '@/constants/shipment-priority';
 import { SHIPMENT_STATUS_LABELS } from '@/constants/shipment-status';
@@ -7,11 +7,11 @@ import { SHIPMENT_PRIORITY_LABELS } from '@/constants/shipment-priority';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useState } from 'react';
 
-const toShipmentStatus = (value: string): ShipmentStatus | undefined =>
-  value ? (value as ShipmentStatus) : undefined;
+const toShipmentStatus = (value: string): ShipmentStatus | '' =>
+  value ? (value as ShipmentStatus) : '';
 
-const toShipmentPriority = (value: string): ShipmentPriority | undefined =>
-  value ? (value as ShipmentPriority) : undefined;
+const toShipmentPriority = (value: string): ShipmentPriority | '' =>
+  value ? (value as ShipmentPriority) : '';
 
 export function FilterBar({ destinations }: { destinations: string[] }) {
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -19,11 +19,14 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
   const {
     filters,
     sort,
-    updateFilter,
-    updateSort,
-    clearFilters,
     hasActiveFilters,
-  } = useShipmentFilters();
+    setSearch,
+    setStatus,
+    setPriority,
+    setDestination,
+    setSort,
+    clearFilters,
+  } = useURLFilters();
 
   const statusOptions = Object.entries(SHIPMENT_STATUS_LABELS).map(
     ([value, label]) => ({
@@ -90,7 +93,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
               <Input
                 placeholder="Tracking number or customer..."
                 value={filters.search || ''}
-                onChange={(e) => updateFilter('search', e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
 
@@ -104,9 +107,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                   ...statusOptions,
                 ]}
                 value={filters.status || ''}
-                onChange={(e) =>
-                  updateFilter('status', toShipmentStatus(e.target.value))
-                }
+                onChange={(e) => setStatus(toShipmentStatus(e.target.value))}
               />
             </div>
 
@@ -121,7 +122,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                 ]}
                 value={filters.priority || ''}
                 onChange={(e) =>
-                  updateFilter('priority', toShipmentPriority(e.target.value))
+                  setPriority(toShipmentPriority(e.target.value))
                 }
               />
             </div>
@@ -136,9 +137,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                   ...destinations.map((d) => ({ value: d, label: d })),
                 ]}
                 value={filters.destination || ''}
-                onChange={(e) =>
-                  updateFilter('destination', e.target.value || undefined)
-                }
+                onChange={(e) => setDestination(e.target.value)}
               />
             </div>
 
@@ -168,7 +167,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                 value={`${sort.field}-${sort.order}`}
                 onChange={(e) => {
                   const [field, order] = e.target.value.split('-');
-                  updateSort(
+                  setSort(
                     field as 'estimatedDelivery' | 'lastUpdated',
                     order as 'asc' | 'desc',
                   );
@@ -187,7 +186,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
         <Input
           placeholder="Search tracking # or customer..."
           value={filters.search || ''}
-          onChange={(e) => updateFilter('search', e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           className="max-w-xs"
         />
       </div>
@@ -196,18 +195,14 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
         <Select
           options={[{ value: '', label: 'Status' }, ...statusOptions]}
           value={filters.status || ''}
-          onChange={(e) =>
-            updateFilter('status', toShipmentStatus(e.target.value))
-          }
+          onChange={(e) => setStatus(toShipmentStatus(e.target.value))}
           className="w-40"
         />
 
         <Select
           options={[{ value: '', label: 'Priority' }, ...priorityOptions]}
           value={filters.priority || ''}
-          onChange={(e) =>
-            updateFilter('priority', toShipmentPriority(e.target.value))
-          }
+          onChange={(e) => setPriority(toShipmentPriority(e.target.value))}
           className="w-40"
         />
 
@@ -217,9 +212,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
             ...destinations.map((d) => ({ value: d, label: d })),
           ]}
           value={filters.destination || ''}
-          onChange={(e) =>
-            updateFilter('destination', e.target.value || undefined)
-          }
+          onChange={(e) => setDestination(e.target.value)}
           className="w-40"
         />
 
@@ -233,7 +226,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           value={`${sort.field}-${sort.order}`}
           onChange={(e) => {
             const [field, order] = e.target.value.split('-');
-            updateSort(
+            setSort(
               field as 'estimatedDelivery' | 'lastUpdated',
               order as 'asc' | 'desc',
             );

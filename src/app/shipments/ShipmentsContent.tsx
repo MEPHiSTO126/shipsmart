@@ -1,8 +1,10 @@
+'use client';
+
 import {
   useShipments,
   useShipmentSummary,
 } from '@/features/shipment-tracking/presentation/hooks/useShipments';
-import { useShipmentFilters } from '@/features/shipment-tracking/presentation/hooks/useShipmentFilters';
+import { useURLFilters } from '@/features/shipment-tracking/presentation/hooks/useURLFilters';
 import { DashboardStats } from '@/features/shipment-tracking/presentation/components/DashboardStats';
 import { ShipmentList } from '@/features/shipment-tracking/presentation/components/ShipmentList';
 import { FilterBar } from '@/features/shipment-tracking/presentation/components/FilterBar';
@@ -12,7 +14,15 @@ import { Container } from '@/components/layout/Container';
 import { getUniqueDestinations } from '@/features/shipment-tracking/application/use-cases/filter-shipments.use-case';
 
 export function ShipmentsContent() {
-  const { filters, sort, hasActiveFilters } = useShipmentFilters();
+  const { filters, sort, hasActiveFilters } = useURLFilters();
+
+  // Convert URLFilters (empty strings) to ShipmentFilters (undefined)
+  const shipmentFilters = {
+    search: filters.search || undefined,
+    status: filters.status || undefined,
+    priority: filters.priority || undefined,
+    destination: filters.destination || undefined,
+  };
 
   const {
     data: summary,
@@ -25,7 +35,7 @@ export function ShipmentsContent() {
     isError,
     error,
     isFetching,
-  } = useShipments(filters, sort);
+  } = useShipments(shipmentFilters, sort);
 
   const destinations = getUniqueDestinations(shipments);
 
