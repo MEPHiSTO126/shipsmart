@@ -1,13 +1,5 @@
-import { Shipment } from '@/features/shipment-tracking/domain/entities/shipment';
-import {
-  ShipmentFilters,
-  ShipmentSort,
-} from '@/features/shipment-tracking/domain/repositories/shipment-repository';
 import { ShipmentRepository } from '@/features/shipment-tracking/domain/repositories/shipment-repository';
-
-export interface GetShipmentsUseCase {
-  execute(filters?: ShipmentFilters, sort?: ShipmentSort): Promise<Shipment[]>;
-}
+import { GetShipmentsUseCase } from '@/interfaces';
 
 export function createGetShipmentsUseCase(
   repository: ShipmentRepository,

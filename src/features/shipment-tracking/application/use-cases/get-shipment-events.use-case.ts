@@ -1,10 +1,5 @@
-import { TrackingNumber } from '@/features/shipment-tracking/domain/value-objects/tracking-number';
-import { TimelineEvent } from '@/features/shipment-tracking/domain/entities/timeline-event';
 import { ShipmentRepository } from '@/features/shipment-tracking/domain/repositories/shipment-repository';
-
-export interface GetShipmentEventsUseCase {
-  execute(trackingNumber: TrackingNumber): Promise<readonly TimelineEvent[]>;
-}
+import { GetShipmentEventsUseCase } from '@/interfaces';
 
 export function createGetShipmentEventsUseCase(
   repository: ShipmentRepository,

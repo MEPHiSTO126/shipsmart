@@ -8,21 +8,24 @@ export function useReducedMotion(): boolean {
       return () => mediaQuery.removeEventListener('change', callback);
     },
     () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-    () => false
+    () => false,
   );
 }
 
 export function useCountUp(
   endValue: number,
   duration: number = 1,
-  prefersReducedMotion: boolean = false
+  prefersReducedMotion: boolean = false,
 ): number {
   const [count, setCount] = useState(() =>
-    prefersReducedMotion || endValue === 0 ? endValue : 0
+    prefersReducedMotion || endValue === 0 ? endValue : 0,
   );
   const [prev, setPrev] = useState({ endValue, prefersReducedMotion });
 
-  if (prev.endValue !== endValue || prev.prefersReducedMotion !== prefersReducedMotion) {
+  if (
+    prev.endValue !== endValue ||
+    prev.prefersReducedMotion !== prefersReducedMotion
+  ) {
     setPrev({ endValue, prefersReducedMotion });
     setCount(prefersReducedMotion || endValue === 0 ? endValue : 0);
   }
@@ -39,7 +42,7 @@ export function useCountUp(
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / (duration * 1000), 1);
-      
+
       // Easing function (ease-out)
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(easedProgress * endValue));

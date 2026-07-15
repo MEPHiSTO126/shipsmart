@@ -1,14 +1,5 @@
 import { ShipmentRepository } from '@/features/shipment-tracking/domain/repositories/shipment-repository';
-import { Shipment } from '@/features/shipment-tracking/domain/entities/shipment';
-import { TrackingNumber } from '@/features/shipment-tracking/domain/value-objects/tracking-number';
-import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
-
-export interface AdvanceShipmentStatusUseCase {
-  execute(
-    trackingNumber: TrackingNumber,
-    newStatus: ShipmentStatus,
-  ): Promise<Shipment>;
-}
+import { AdvanceShipmentStatusUseCase } from '@/interfaces';
 
 export function createAdvanceShipmentStatusUseCase(
   repository: ShipmentRepository,

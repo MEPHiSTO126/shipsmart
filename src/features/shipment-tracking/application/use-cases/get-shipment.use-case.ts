@@ -1,10 +1,5 @@
-import { Shipment } from '@/features/shipment-tracking/domain/entities/shipment';
-import { TrackingNumber } from '@/features/shipment-tracking/domain/value-objects/tracking-number';
 import { ShipmentRepository } from '@/features/shipment-tracking/domain/repositories/shipment-repository';
-
-export interface GetShipmentUseCase {
-  execute(trackingNumber: TrackingNumber): Promise<Shipment | null>;
-}
+import { GetShipmentUseCase } from '@/interfaces';
 
 export function createGetShipmentUseCase(
   repository: ShipmentRepository,

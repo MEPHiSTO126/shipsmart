@@ -8,7 +8,7 @@ export function useReducedMotion(): boolean {
       return () => mediaQuery.removeEventListener('change', callback);
     },
     () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-    () => false
+    () => false,
   );
 }
 
@@ -19,7 +19,7 @@ export function useScrollPosition(): number {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -29,7 +29,7 @@ export function useScrollPosition(): number {
 
 export function useIntersectionObserver(
   elementRef: React.RefObject<Element>,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ): IntersectionObserverEntry | null {
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 
@@ -51,12 +51,12 @@ export function useIntersectionObserver(
 export function useStaggeredAnimation(
   count: number,
   baseDelay = 0.1,
-  prefersReducedMotion = false
+  prefersReducedMotion = false,
 ): { delay: number }[] {
   if (prefersReducedMotion) {
     return Array.from({ length: count }, () => ({ delay: 0 }));
   }
-  
+
   return Array.from({ length: count }, (_, i) => ({
     delay: i * baseDelay,
   }));
@@ -71,10 +71,10 @@ export function useSpringConfig(prefersReducedMotion: boolean) {
 export function useCountUp(
   end: number,
   duration = 1,
-  prefersReducedMotion = false
+  prefersReducedMotion = false,
 ): number {
   const [count, setCount] = useState(() =>
-    prefersReducedMotion || end === 0 ? end : 0
+    prefersReducedMotion || end === 0 ? end : 0,
   );
   const [prev, setPrev] = useState({ end, prefersReducedMotion });
 

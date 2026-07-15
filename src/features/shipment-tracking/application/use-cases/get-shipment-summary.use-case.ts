@@ -1,9 +1,5 @@
 import { ShipmentSummaryRepository } from '@/features/shipment-tracking/domain/repositories/shipment-summary-repository';
-import { ShipmentSummary } from '@/features/shipment-tracking/domain/repositories/shipment-summary-repository';
-
-export interface GetShipmentSummaryUseCase {
-  execute(): Promise<ShipmentSummary>;
-}
+import { GetShipmentSummaryUseCase } from '@/interfaces';
 
 export function createGetShipmentSummaryUseCase(
   repository: ShipmentSummaryRepository,
