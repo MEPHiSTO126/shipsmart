@@ -37,5 +37,8 @@ export {
   StatCardSkeleton,
 } from './Skeleton';
 
+export { EmptyState } from './EmptyState';
+export { ErrorState } from './ErrorState';
+
 export { default as SpecularButton } from './SpecularButton';
 export type { SpecularButtonProps } from './SpecularButton';
