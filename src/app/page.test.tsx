@@ -1,12 +1,15 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { redirect } from 'next/navigation';
 import Home from './page';
 
+jest.mock('next/navigation', () => ({
+  redirect: jest.fn(),
+}));
+
 describe('Home Page', () => {
-  it('renders start editing message', () => {
+  it('redirects to /shipments', () => {
     render(<Home />);
-    expect(
-      screen.getByText(/To get started, edit the page.tsx file./i),
-    ).toBeInTheDocument();
+    expect(redirect).toHaveBeenCalledWith('/shipments');
   });
 
   it('MSW successfully mocks a request to /api/shipments', async () => {
