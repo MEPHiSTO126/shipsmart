@@ -396,7 +396,7 @@ export function TargetCursor({
   return (
     <div
       ref={cursorRef}
-      className={`target-cursor-wrapper ${className}`}
+      className={`target-cursor ${className}`}
       style={{ ...style }}
     >
       <div ref={dotRef} className="target-cursor-dot" style={{ backgroundColor: cursorColor }} />
