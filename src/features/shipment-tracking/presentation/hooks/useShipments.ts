@@ -18,10 +18,14 @@ import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-object
 import { TimelineEvent } from '@/features/shipment-tracking/domain/entities/timeline-event';
 import { QUERY_KEYS } from '@/features/shipment-tracking/infrastructure/api/query-keys';
 
-type MutableTimelineEvent = Omit<TimelineEvent, 'timestamp'> & { timestamp: Date };
+type MutableTimelineEvent = Omit<TimelineEvent, 'timestamp'> & {
+  timestamp: Date;
+};
 
-function toMutableEvents(events: readonly TimelineEvent[]): MutableTimelineEvent[] {
-  return events.map(e => ({ ...e, timestamp: e.timestamp }));
+function toMutableEvents(
+  events: readonly TimelineEvent[],
+): MutableTimelineEvent[] {
+  return events.map((e) => ({ ...e, timestamp: e.timestamp }));
 }
 
 // Initialize use cases on first import
@@ -39,7 +43,8 @@ export function useShipments(filters?: ShipmentFilters, sort?: ShipmentSort) {
 export function useShipment(trackingNumber: TrackingNumber | string) {
   return useQuery<Shipment | null, Error>({
     queryKey: QUERY_KEYS.shipments.detail(trackingNumber),
-    queryFn: () => getShipmentUseCase().execute(trackingNumber as TrackingNumber),
+    queryFn: () =>
+      getShipmentUseCase().execute(trackingNumber as TrackingNumber),
     enabled: !!trackingNumber,
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
@@ -49,7 +54,12 @@ export function useShipment(trackingNumber: TrackingNumber | string) {
 export function useShipmentEvents(trackingNumber: TrackingNumber | string) {
   return useQuery<MutableTimelineEvent[], Error>({
     queryKey: QUERY_KEYS.shipments.events(trackingNumber),
-    queryFn: async () => toMutableEvents(await getShipmentEventsUseCase().execute(trackingNumber as TrackingNumber)),
+    queryFn: async () =>
+      toMutableEvents(
+        await getShipmentEventsUseCase().execute(
+          trackingNumber as TrackingNumber,
+        ),
+      ),
     enabled: !!trackingNumber,
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,
@@ -67,31 +77,56 @@ export function useShipmentSummary() {
 
 export function useAdvanceShipmentStatus() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationKey: QUERY_KEYS.mutation.advanceStatus(''),
-    mutationFn: ({ trackingNumber, newStatus }: { trackingNumber: TrackingNumber; newStatus: ShipmentStatus }) => 
-      advanceShipmentStatusUseCase().execute(trackingNumber, newStatus),
+    mutationFn: ({
+      trackingNumber,
+      newStatus,
+    }: {
+      trackingNumber: TrackingNumber;
+      newStatus: ShipmentStatus;
+    }) => advanceShipmentStatusUseCase().execute(trackingNumber, newStatus),
     onMutate: async ({ trackingNumber, newStatus }) => {
-      await queryClient.cancelQueries({ queryKey: QUERY_KEYS.shipments.detail(trackingNumber) });
-      await queryClient.cancelQueries({ queryKey: QUERY_KEYS.shipments.list() });
-      await queryClient.cancelQueries({ queryKey: QUERY_KEYS.shipments.summary() });
+      await queryClient.cancelQueries({
+        queryKey: QUERY_KEYS.shipments.detail(trackingNumber),
+      });
+      await queryClient.cancelQueries({
+        queryKey: QUERY_KEYS.shipments.list(),
+      });
+      await queryClient.cancelQueries({
+        queryKey: QUERY_KEYS.shipments.summary(),
+      });
 
-      const previousShipment = queryClient.getQueryData<Shipment>(QUERY_KEYS.shipments.detail(trackingNumber));
-      const previousList = queryClient.getQueryData<Shipment[]>(QUERY_KEYS.shipments.list());
-      const previousSummary = queryClient.getQueryData<ShipmentSummary>(QUERY_KEYS.shipments.summary());
+      const previousShipment = queryClient.getQueryData<Shipment>(
+        QUERY_KEYS.shipments.detail(trackingNumber),
+      );
+      const previousList = queryClient.getQueryData<Shipment[]>(
+        QUERY_KEYS.shipments.list(),
+      );
+      const previousSummary = queryClient.getQueryData<ShipmentSummary>(
+        QUERY_KEYS.shipments.summary(),
+      );
 
       if (previousShipment) {
-        queryClient.setQueryData<Shipment>(QUERY_KEYS.shipments.detail(trackingNumber), {
-          ...previousShipment,
-          status: newStatus,
-          lastUpdated: new Date(),
-        });
+        queryClient.setQueryData<Shipment>(
+          QUERY_KEYS.shipments.detail(trackingNumber),
+          {
+            ...previousShipment,
+            status: newStatus,
+            lastUpdated: new Date(),
+          },
+        );
       }
 
       if (previousList) {
-        queryClient.setQueryData<Shipment[]>(QUERY_KEYS.shipments.list(), 
-          previousList.map(s => s.trackingNumber === trackingNumber ? { ...s, status: newStatus, lastUpdated: new Date() } : s)
+        queryClient.setQueryData<Shipment[]>(
+          QUERY_KEYS.shipments.list(),
+          previousList.map((s) =>
+            s.trackingNumber === trackingNumber
+              ? { ...s, status: newStatus, lastUpdated: new Date() }
+              : s,
+          ),
         );
       }
 
@@ -99,20 +134,35 @@ export function useAdvanceShipmentStatus() {
     },
     onError: (err, { trackingNumber }, context) => {
       if (context?.previousShipment) {
-        queryClient.setQueryData(QUERY_KEYS.shipments.detail(trackingNumber), context.previousShipment);
+        queryClient.setQueryData(
+          QUERY_KEYS.shipments.detail(trackingNumber),
+          context.previousShipment,
+        );
       }
       if (context?.previousList) {
-        queryClient.setQueryData(QUERY_KEYS.shipments.list(), context.previousList);
+        queryClient.setQueryData(
+          QUERY_KEYS.shipments.list(),
+          context.previousList,
+        );
       }
       if (context?.previousSummary) {
-        queryClient.setQueryData(QUERY_KEYS.shipments.summary(), context.previousSummary);
+        queryClient.setQueryData(
+          QUERY_KEYS.shipments.summary(),
+          context.previousSummary,
+        );
       }
     },
     onSettled: (_data, _err, { trackingNumber }) => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.shipments.detail(trackingNumber) });
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.shipments.detail(trackingNumber),
+      });
       queryClient.invalidateQueries({ queryKey: QUERY_KEYS.shipments.list() });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.shipments.summary() });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.shipments.events(trackingNumber) });
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.shipments.summary(),
+      });
+      queryClient.invalidateQueries({
+        queryKey: QUERY_KEYS.shipments.events(trackingNumber),
+      });
     },
   });
 }

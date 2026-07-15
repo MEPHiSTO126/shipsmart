@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ShipmentDetailPage({ params }: Props) {
   const { trackingNumber } = await params;
-  
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Suspense fallback={<DetailSkeleton />}>
@@ -28,24 +28,24 @@ export default async function ShipmentDetailPage({ params }: Props) {
 
 function DetailSkeleton() {
   return (
-    <div className="p-6 space-y-6 max-w-4xl mx-auto">
+    <div className="mx-auto max-w-4xl space-y-6 p-6">
       <div className="animate-pulse space-y-4">
-        <div className="h-6 w-1/4 bg-gray-200 rounded" />
-        <div className="h-4 w-1/2 bg-gray-200 rounded" />
+        <div className="h-6 w-1/4 rounded bg-gray-200" />
+        <div className="h-4 w-1/2 rounded bg-gray-200" />
       </div>
-      <div className="animate-pulse rounded-lg border bg-white p-6 space-y-4">
-        <div className="h-4 w-1/3 bg-gray-200 rounded" />
+      <div className="animate-pulse space-y-4 rounded-lg border bg-white p-6">
+        <div className="h-4 w-1/3 rounded bg-gray-200" />
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-16 bg-gray-200 rounded" />
+            <div key={i} className="h-16 rounded bg-gray-200" />
           ))}
         </div>
       </div>
-      <div className="animate-pulse rounded-lg border bg-white p-6 space-y-4">
-        <div className="h-4 w-1/4 bg-gray-200 rounded" />
+      <div className="animate-pulse space-y-4 rounded-lg border bg-white p-6">
+        <div className="h-4 w-1/4 rounded bg-gray-200" />
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-12 bg-gray-200 rounded" />
+            <div key={i} className="h-12 rounded bg-gray-200" />
           ))}
         </div>
       </div>

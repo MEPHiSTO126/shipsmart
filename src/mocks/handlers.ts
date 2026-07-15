@@ -179,6 +179,31 @@ export const handlers = [
     return HttpResponse.json(filtered);
   }),
 
+  // 1b. GET /shipments/summary
+  http.get('*/api/shipments/summary', () => {
+    const totalShipments = mockShipments.length;
+    const inTransitCount = mockShipments.filter(
+      (s) => s.status === 'in_transit',
+    ).length;
+    const delayedCount = mockShipments.filter(
+      (s) => s.status === 'delayed',
+    ).length;
+    const outForDeliveryCount = mockShipments.filter(
+      (s) => s.status === 'out_for_delivery',
+    ).length;
+    const deliveredCount = mockShipments.filter(
+      (s) => s.status === 'delivered',
+    ).length;
+
+    return HttpResponse.json({
+      totalShipments,
+      inTransitCount,
+      delayedCount,
+      outForDeliveryCount,
+      deliveredCount,
+    });
+  }),
+
   // 2. GET /shipments/:trackingNumber
   http.get('*/api/shipments/:trackingNumber', ({ params }) => {
     const { trackingNumber } = params;

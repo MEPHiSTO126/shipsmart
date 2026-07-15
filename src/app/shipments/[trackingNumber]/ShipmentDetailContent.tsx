@@ -2,9 +2,16 @@
 
 import Link from 'next/link';
 
-import { useShipment, useShipmentEvents, useAdvanceShipmentStatus } from '@/features/shipment-tracking/presentation/hooks/useShipments';
+import {
+  useShipment,
+  useShipmentEvents,
+  useAdvanceShipmentStatus,
+} from '@/features/shipment-tracking/presentation/hooks/useShipments';
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
-import { getNextValidStatuses, isTerminalStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
+import {
+  getNextValidStatuses,
+  isTerminalStatus,
+} from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { ShipmentDetailHeader } from '@/features/shipment-tracking/presentation/components/ShipmentDetailHeader';
 import { RouteInfo } from '@/features/shipment-tracking/presentation/components/RouteInfo';
 import { Timeline } from '@/features/shipment-tracking/presentation/components/Timeline';
@@ -20,10 +27,17 @@ interface ShipmentDetailContentProps {
   trackingNumber: string;
 }
 
-export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentProps) {
+export function ShipmentDetailContent({
+  trackingNumber,
+}: ShipmentDetailContentProps) {
   const tn = trackingNumber as TrackingNumber;
-  
-  const { data: shipment, isLoading: shipmentLoading, isError: shipmentError, error: shipmentErr } = useShipment(tn);
+
+  const {
+    data: shipment,
+    isLoading: shipmentLoading,
+    isError: shipmentError,
+    error: shipmentErr,
+  } = useShipment(tn);
   const { data: events = [], isLoading: eventsLoading } = useShipmentEvents(tn);
   const advanceMutation = useAdvanceShipmentStatus();
 
@@ -43,7 +57,11 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
     return (
       <Container>
         <ErrorState
-          message={shipmentErr instanceof Error ? shipmentErr.message : 'Failed to load shipment'}
+          message={
+            shipmentErr instanceof Error
+              ? shipmentErr.message
+              : 'Failed to load shipment'
+          }
           onRetry={() => window.location.reload()}
         />
       </Container>
@@ -56,7 +74,11 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
         <EmptyState
           title="Shipment not found"
           description={`No shipment found with tracking number ${trackingNumber}`}
-          action={<Link href="/shipments" className="text-blue-600 hover:underline">Back to dashboard</Link>}
+          action={
+            <Link href="/shipments" className="text-blue-600 hover:underline">
+              Back to dashboard
+            </Link>
+          }
         />
       </Container>
     );
@@ -83,15 +105,15 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
           actions={
             <Link
               href="/shipments"
-              className="text-blue-600 hover:underline text-sm font-medium"
+              className="text-sm font-medium text-blue-600 hover:underline"
             >
               ← Back to dashboard
             </Link>
           }
         />
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-6">
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -117,7 +139,7 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
             </motion.div>
           </div>
 
-          <div className="lg:col-span-1 space-y-6">
+          <div className="space-y-6 lg:col-span-1">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,40 +174,40 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
 function DetailSkeleton() {
   return (
     <Container>
-      <div className="animate-pulse space-y-6 max-w-4xl mx-auto p-6">
-        <div className="h-8 w-1/3 bg-gray-200 rounded" />
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg border p-6 space-y-4">
-              <div className="h-6 w-1/4 bg-gray-200 rounded" />
-              <div className="h-4 w-1/2 bg-gray-200 rounded" />
+      <div className="mx-auto max-w-4xl animate-pulse space-y-6 p-6">
+        <div className="h-8 w-1/3 rounded bg-gray-200" />
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-2">
+            <div className="space-y-4 rounded-lg border bg-white p-6">
+              <div className="h-6 w-1/4 rounded bg-gray-200" />
+              <div className="h-4 w-1/2 rounded bg-gray-200" />
               <div className="grid grid-cols-3 gap-4">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-12 bg-gray-200 rounded" />
+                  <div key={i} className="h-12 rounded bg-gray-200" />
                 ))}
               </div>
             </div>
-            <div className="bg-white rounded-lg border p-6 space-y-4">
-              <div className="h-4 w-1/4 bg-gray-200 rounded" />
+            <div className="space-y-4 rounded-lg border bg-white p-6">
+              <div className="h-4 w-1/4 rounded bg-gray-200" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-16 bg-gray-200 rounded" />
+                  <div key={i} className="h-16 rounded bg-gray-200" />
                 ))}
               </div>
             </div>
           </div>
           <div className="space-y-6">
-            <div className="bg-white rounded-lg border p-6 space-y-4">
-              <div className="h-4 w-1/3 bg-gray-200 rounded" />
+            <div className="space-y-4 rounded-lg border bg-white p-6">
+              <div className="h-4 w-1/3 rounded bg-gray-200" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-12 bg-gray-200 rounded" />
+                  <div key={i} className="h-12 rounded bg-gray-200" />
                 ))}
               </div>
             </div>
-            <div className="bg-white rounded-lg border p-6 space-y-4">
-              <div className="h-4 w-1/3 bg-gray-200 rounded" />
-              <div className="h-12 bg-gray-200 rounded" />
+            <div className="space-y-4 rounded-lg border bg-white p-6">
+              <div className="h-4 w-1/3 rounded bg-gray-200" />
+              <div className="h-12 rounded bg-gray-200" />
             </div>
           </div>
         </div>

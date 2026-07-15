@@ -8,7 +8,13 @@ interface ShipmentDetailHeaderProps {
   shipment: Shipment;
 }
 
-const STATUS_BADGE: Record<ShipmentStatus, { variant: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral'; label: string }> = {
+const STATUS_BADGE: Record<
+  ShipmentStatus,
+  {
+    variant: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+    label: string;
+  }
+> = {
   order_received: { variant: 'neutral', label: 'Order Received' },
   processing: { variant: 'info', label: 'Processing' },
   dispatched: { variant: 'default', label: 'Dispatched' },
@@ -20,7 +26,13 @@ const STATUS_BADGE: Record<ShipmentStatus, { variant: 'default' | 'success' | 'w
   cancelled: { variant: 'neutral', label: 'Cancelled' },
 };
 
-const PRIORITY_BADGE: Record<ShipmentPriority, { variant: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral'; label: string }> = {
+const PRIORITY_BADGE: Record<
+  ShipmentPriority,
+  {
+    variant: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+    label: string;
+  }
+> = {
   standard: { variant: 'neutral', label: 'Standard' },
   express: { variant: 'info', label: 'Express' },
   priority: { variant: 'warning', label: 'Priority' },
@@ -35,12 +47,14 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white rounded-lg border shadow-sm p-6"
+      className="rounded-lg border bg-white p-6 shadow-sm"
     >
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1">
-          <div className="flex items-center gap-3 flex-wrap mb-3">
-            <span className="font-mono text-xl font-bold text-gray-900">{shipment.trackingNumber}</span>
+          <div className="mb-3 flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xl font-bold text-gray-900">
+              {shipment.trackingNumber}
+            </span>
             <Badge variant={statusConfig.variant} dot size="lg">
               {statusConfig.label}
             </Badge>
@@ -48,10 +62,14 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
               {priorityConfig.label}
             </Badge>
           </div>
-          <p className="text-2xl font-semibold text-gray-900 mb-2">{shipment.customerName}</p>
-          <p className="text-gray-500">Courier: {shipment.courier.name} (ID: {shipment.courier.id})</p>
+          <p className="mb-2 text-2xl font-semibold text-gray-900">
+            {shipment.customerName}
+          </p>
+          <p className="text-gray-500">
+            Courier: {shipment.courier.name} (ID: {shipment.courier.id})
+          </p>
         </div>
-        <div className="flex flex-col items-end sm:items-end gap-2 text-right">
+        <div className="flex flex-col items-end gap-2 text-right sm:items-end">
           <p className="text-sm text-gray-500">Last updated</p>
           <p className="font-medium text-gray-900">
             {new Date(shipment.lastUpdated).toLocaleDateString(undefined, {
