@@ -28,7 +28,11 @@ export function ShipmentDetailContent({ trackingNumber }: ShipmentDetailContentP
   const advanceMutation = useAdvanceShipmentStatus();
 
   const nextStatuses = shipment ? getNextValidStatuses(shipment.status) : [];
-  const canAdvance = shipment && !isTerminalStatus(shipment.status) && nextStatuses.length > 0;
+  const canAdvance = !!(
+    shipment &&
+    !isTerminalStatus(shipment.status) &&
+    nextStatuses.length > 0
+  );
   const isMutating = advanceMutation.isPending;
 
   if (shipmentLoading || eventsLoading) {

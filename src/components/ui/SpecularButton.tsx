@@ -85,6 +85,7 @@ export interface SpecularButtonProps {
   proximity?: number;
   autoAnimate?: boolean;
   disabled?: boolean;
+  loading?: boolean;
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
@@ -109,6 +110,7 @@ const SpecularButton = ({
   proximity = 250,
   autoAnimate = false,
   disabled = false,
+  loading = false,
   onClick,
   className = '',
   type = 'button',
@@ -282,7 +284,7 @@ const SpecularButton = ({
     <button
       ref={btnRef}
       type={type}
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
       className={`specular-button specular-button--${size}${className ? ` ${className}` : ''}`}
       style={
@@ -296,7 +298,15 @@ const SpecularButton = ({
       }
     >
       <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
-      <span className="specular-button__label">{children}</span>
+      <span className="specular-button__label flex items-center justify-center">
+        {loading && (
+          <svg className="animate-spin h-4 w-4 mr-2" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" fill="none" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+        )}
+        {children}
+      </span>
     </button>
   );
 };

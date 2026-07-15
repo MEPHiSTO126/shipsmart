@@ -2,11 +2,12 @@ import { Shipment } from '../entities/shipment';
 import { TrackingNumber } from '../value-objects/tracking-number';
 import { ShipmentStatus } from '../value-objects/status-transition';
 import { ShipmentSummary } from '../repositories/shipment-summary-repository';
+import { ShipmentPriority } from '@/constants/shipment-priority';
 
 export interface ShipmentFilters {
   search?: string;
   status?: ShipmentStatus;
-  priority?: 'standard' | 'express' | 'priority';
+  priority?: ShipmentPriority;
   destination?: string;
 }
 
