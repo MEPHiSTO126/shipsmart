@@ -19,7 +19,7 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
     error?.message?.toLowerCase().includes('404');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Container className="py-16">
         <div className="mx-auto max-w-md text-center">
           {/* Icon */}
@@ -97,7 +97,7 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
             )}
             <Link
               href="/shipments"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-6 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
             >
               <svg
                 className="h-4 w-4"

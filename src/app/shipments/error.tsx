@@ -15,7 +15,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Container className="py-16">
         <div className="mx-auto max-w-md text-center">
           {/* Error icon */}
@@ -72,7 +72,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
             </button>
             <button
               onClick={() => (window.location.href = '/')}
-              className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
+              className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-6 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
             >
               Go home
             </button>

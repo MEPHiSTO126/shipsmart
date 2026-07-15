@@ -153,11 +153,11 @@ interface TimelineProps {
 export function Timeline({ events }: TimelineProps) {
   if (!events.length) {
     return (
-      <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+        <h2 className="mb-4 text-lg font-semibold text-white">
           Activity Timeline
         </h2>
-        <div className="py-8 text-center text-gray-500">
+        <div className="py-8 text-center text-slate-500">
           No timeline events available
         </div>
       </div>
@@ -165,12 +165,12 @@ export function Timeline({ events }: TimelineProps) {
   }
 
   return (
-    <div className="rounded-lg border bg-white p-6 shadow-sm">
-      <h2 className="mb-6 text-lg font-semibold text-gray-900">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+      <h2 className="mb-6 text-lg font-semibold text-white">
         Activity Timeline
       </h2>
       <div className="relative">
-        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-gray-200" />
+        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-white/10" />
         <div className="space-y-6">
           {events.map((event, index) => (
             <motion.div
@@ -180,20 +180,20 @@ export function Timeline({ events }: TimelineProps) {
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <div className="relative flex gap-4">
-                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-200 bg-white">
+                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-white/10 bg-gray-950">
                   <div
                     className={`flex h-5 w-5 items-center justify-center ${
                       event.status === 'delivered'
-                        ? 'text-green-600'
+                        ? 'text-green-400'
                         : event.status === 'delayed'
-                          ? 'text-red-600'
+                          ? 'text-red-400'
                           : event.status === 'delivery_failed'
-                            ? 'text-red-600'
+                            ? 'text-red-400'
                             : event.status === 'out_for_delivery'
-                              ? 'text-amber-600'
+                              ? 'text-amber-400'
                               : event.status === 'in_transit'
-                                ? 'text-blue-600'
-                                : 'text-gray-500'
+                                ? 'text-blue-400'
+                                : 'text-slate-500'
                     }`}
                   >
                     {STATUS_ICONS[event.status] || (
@@ -222,13 +222,13 @@ export function Timeline({ events }: TimelineProps) {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="font-medium text-gray-900 capitalize">
+                      <p className="font-medium text-white capitalize">
                         {event.status.replace('_', ' ')}
                       </p>
-                      <p className="mt-1 text-sm text-gray-600">
+                      <p className="mt-1 text-sm text-slate-300">
                         {event.description}
                       </p>
-                      <p className="mt-1 flex items-center gap-1 text-xs text-gray-400">
+                      <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
                         <svg
                           className="h-3 w-3"
                           fill="none"
@@ -252,7 +252,7 @@ export function Timeline({ events }: TimelineProps) {
                       </p>
                     </div>
                     <div className="flex-shrink-0 text-right">
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-white">
                         {new Date(event.timestamp).toLocaleDateString(
                           undefined,
                           {
@@ -262,7 +262,7 @@ export function Timeline({ events }: TimelineProps) {
                           },
                         )}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-slate-400">
                         {new Date(event.timestamp).toLocaleTimeString(
                           undefined,
                           {

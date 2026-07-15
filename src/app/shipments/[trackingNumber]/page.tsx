@@ -18,7 +18,7 @@ export default async function ShipmentDetailPage({ params }: Props) {
   const { trackingNumber } = await params;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Suspense fallback={<DetailSkeleton />}>
         <ShipmentDetailContent trackingNumber={trackingNumber} />
       </Suspense>

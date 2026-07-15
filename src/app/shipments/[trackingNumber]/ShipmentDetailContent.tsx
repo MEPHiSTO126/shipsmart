@@ -78,7 +78,10 @@ export function ShipmentDetailContent({
           title="Shipment not found"
           description={`No shipment found with tracking number ${trackingNumber}`}
           action={
-            <Link href="/shipments" className="text-blue-600 hover:underline">
+            <Link
+              href="/shipments"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-5 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
+            >
               Back to dashboard
             </Link>
           }
@@ -127,7 +130,7 @@ export function ShipmentDetailContent({
           actions={
             <Link
               href="/shipments"
-              className="text-sm font-medium text-blue-600 hover:underline"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-4 py-2 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
             >
               ← Back to dashboard
             </Link>

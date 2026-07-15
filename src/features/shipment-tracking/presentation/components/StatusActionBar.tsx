@@ -19,12 +19,12 @@ export function StatusActionBar({
 }: StatusActionBarProps) {
   if (!canAdvance || nextStatuses.length === 0) {
     return (
-      <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h3 className="mb-4 text-lg font-semibold text-gray-900">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+        <h3 className="mb-4 text-lg font-semibold text-white">
           Status Actions
         </h3>
-        <div className="rounded-lg bg-gray-50 p-4">
-          <p className="text-gray-600">
+        <div className="rounded-xl bg-white/[0.03] border border-white/5 p-4">
+          <p className="text-slate-400">
             No further status transitions available.
           </p>
         </div>
@@ -33,11 +33,11 @@ export function StatusActionBar({
   }
 
   return (
-    <div className="space-y-4 rounded-lg border bg-white p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-900">Advance Status</h3>
-      <p className="text-sm text-gray-500">
+    <div className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+      <h3 className="text-lg font-semibold text-white">Advance Status</h3>
+      <p className="text-sm text-slate-400">
         Current:{' '}
-        <span className="font-medium capitalize">
+        <span className="font-medium capitalize text-white">
           {SHIPMENT_STATUS_LABELS[currentStatus].replace('_', ' ')}
         </span>
       </p>

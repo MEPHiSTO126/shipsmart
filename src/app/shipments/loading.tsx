@@ -2,7 +2,7 @@ import { Container } from '@/components/layout/Container';
 
 export default function ShipmentsLoading() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Container className="py-8">
         {/* Page header skeleton */}
         <div className="mb-8 animate-pulse space-y-2">
