@@ -1,10 +1,10 @@
 'use client';
 
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion, SVGMotionProps } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useAnimation';
 import { forwardRef } from 'react';
 
-interface AnimatedIconProps extends Omit<HTMLMotionProps<'svg'>, 'children'> {
+export interface AnimatedIconProps extends Omit<SVGMotionProps<SVGSVGElement>, 'children'> {
   children: React.ReactNode;
   animateOnHover?: boolean;
   animateOnMount?: boolean;
@@ -27,13 +27,13 @@ export const AnimatedIcon = forwardRef<SVGSVGElement, AnimatedIconProps>(
 
     const initial = animateOnMount && !prefersReducedMotion ? { scale: 0, rotate: -180 } : false;
     const animate = animateOnMount && !prefersReducedMotion ? { scale: 1, rotate: 0 } : undefined;
-    const transition = { type: 'spring', stiffness: 300, damping: 20, duration: 0.5 };
+    const transition = { type: 'spring' as const, stiffness: 300, damping: 20, duration: 0.5 };
 
     const whileHover = animateOnHover && !prefersReducedMotion 
       ? { 
           scale: hoverScale,
           rotate: rotateOnHover ? 12 : 0,
-          transition: { type: 'spring', stiffness: 400, damping: 17 }
+          transition: { type: 'spring' as const, stiffness: 400, damping: 17 }
         }
       : undefined;
 
