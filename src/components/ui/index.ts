@@ -52,5 +52,5 @@ export type { DecryptedTextProps } from './DecryptedText';
 export { TargetCursor } from './TargetCursor';
 export type { TargetCursorProps } from './TargetCursor';
 
-export { default as SpecularButton } from './SpecularButton';
-export type { SpecularButtonProps } from './SpecularButton';
+export { AnimatedIcon } from './AnimatedIcon';
+export type { AnimatedIconProps } from './AnimatedIcon';
