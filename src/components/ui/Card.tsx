@@ -8,16 +8,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
     const variants = {
-      default:
-        'bg-white/[0.055] border border-white/10 backdrop-blur-md',
+      default: 'bg-[#111527] border border-slate-800',
       hover:
-        'bg-white/[0.055] border border-white/10 backdrop-blur-md transition-all duration-200 hover:bg-white/[0.085] hover:border-white/20 hover:shadow-lg hover:shadow-purple-900/20 cursor-pointer',
-      bordered:
-        'bg-white/[0.04] border border-white/[0.12]',
-      elevated:
-        'bg-white/[0.06] border border-white/[0.12] shadow-xl shadow-black/30 backdrop-blur-md',
-      glass:
-        'bg-white/[0.07] border border-white/[0.15] backdrop-blur-xl shadow-lg shadow-black/20',
+        'bg-[#111527] border border-slate-800 transition-colors hover:border-slate-700 cursor-pointer',
+      bordered: 'bg-transparent border border-slate-800',
+      elevated: 'bg-[#171c33] border border-slate-800',
+      glass: 'bg-[#111527] border border-slate-800',
     };
 
     return (
@@ -44,7 +40,7 @@ export const CardHeader = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={twMerge('border-b border-white/10 px-6 py-4', className)}
+    className={twMerge('border-b border-slate-800 px-6 py-4', className)}
     {...props}
   />
 ));
@@ -89,7 +85,7 @@ export const CardFooter = forwardRef<
   <div
     ref={ref}
     className={twMerge(
-      'border-t border-white/10 bg-white/[0.03] px-6 py-4',
+      'border-t border-slate-800 bg-white/[0.02] px-6 py-4',
       className,
     )}
     {...props}

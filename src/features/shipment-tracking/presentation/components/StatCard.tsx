@@ -10,32 +10,12 @@ interface StatCardProps {
   animate?: boolean;
 }
 
-const VARIANT_STYLES = {
-  default: {
-    gradient: 'from-blue-500 to-blue-600',
-    glow: 'shadow-blue-500/40',
-    ring: 'ring-blue-400/20',
-  },
-  success: {
-    gradient: 'from-emerald-400 to-green-500',
-    glow: 'shadow-emerald-500/40',
-    ring: 'ring-emerald-400/20',
-  },
-  warning: {
-    gradient: 'from-amber-400 to-orange-500',
-    glow: 'shadow-amber-500/40',
-    ring: 'ring-amber-400/20',
-  },
-  danger: {
-    gradient: 'from-red-500 to-rose-600',
-    glow: 'shadow-red-500/40',
-    ring: 'ring-red-400/20',
-  },
-  info: {
-    gradient: 'from-violet-500 to-purple-600',
-    glow: 'shadow-violet-500/40',
-    ring: 'ring-violet-400/20',
-  },
+const VARIANT_ICON_COLOR = {
+  default: 'text-slate-400',
+  success: 'text-emerald-400',
+  warning: 'text-amber-400',
+  danger: 'text-red-400',
+  info: 'text-blue-400',
 };
 
 export function StatCard({
@@ -46,42 +26,25 @@ export function StatCard({
   trend,
   animate = true,
 }: StatCardProps) {
-  const styles = VARIANT_STYLES[variant];
-
   return (
     <motion.div
-      initial={animate ? { opacity: 0, y: 20 } : false}
+      initial={animate ? { opacity: 0, y: 8 } : false}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
+      transition={{ duration: 0.2 }}
       className="h-full"
     >
-      <Card variant="elevated" className="h-full cursor-target">
+      <Card variant="default" className="h-full">
         <CardContent className="p-5">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 {title}
               </p>
-              <motion.p
-                initial={animate ? { scale: 0.5, opacity: 0 } : false}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 20,
-                  delay: 0.2,
-                }}
-                className="mt-2 text-3xl font-bold text-white tabular-nums"
-              >
+              <p className="mt-2 text-3xl font-bold text-white tabular-nums">
                 {value}
-              </motion.p>
+              </p>
               {trend && (
-                <motion.div
-                  initial={animate ? { opacity: 0, x: -10 } : false}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mt-1.5 flex items-center gap-1 text-xs"
-                >
+                <div className="mt-1.5 flex items-center gap-1 text-xs">
                   <span
                     className={
                       trend.value >= 0 ? 'text-emerald-400' : 'text-red-400'
@@ -90,17 +53,11 @@ export function StatCard({
                     {trend.value >= 0 ? '↑' : '↓'} {Math.abs(trend.value)}%
                   </span>
                   <span className="text-slate-500">{trend.label}</span>
-                </motion.div>
+                </div>
               )}
             </div>
-
-            {/* Icon with glow ring */}
-            <div className={`relative rounded-2xl p-0.5 ring-4 ${styles.ring}`}>
-              <div
-                className={`rounded-xl bg-gradient-to-br p-3 shadow-lg ${styles.gradient} ${styles.glow}`}
-              >
-                <span className="text-white">{icon}</span>
-              </div>
+            <div className="rounded-lg bg-slate-800 p-2.5">
+              <span className={VARIANT_ICON_COLOR[variant]}>{icon}</span>
             </div>
           </div>
         </CardContent>
@@ -108,4 +65,3 @@ export function StatCard({
     </motion.div>
   );
 }
-
