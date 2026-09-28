@@ -130,14 +130,14 @@ export function ConfirmationDialog({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl"
+            className="w-full max-w-md rounded-xl border border-slate-800 bg-[#171c33] p-6 shadow-2xl shadow-black/50"
           >
             {/* Icon */}
             <div className="mb-4 flex items-center gap-3">
               {variant === 'danger' && (
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-red-500/15">
                   <svg
-                    className="h-5 w-5 text-red-600"
+                    className="h-5 w-5 text-red-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -154,13 +154,13 @@ export function ConfirmationDialog({
               )}
               <h2
                 id="dialog-title"
-                className="text-lg font-semibold text-gray-900"
+                className="text-lg font-semibold text-white"
               >
                 {title}
               </h2>
             </div>
 
-            <p id="dialog-message" className="mb-6 text-sm text-gray-600">
+            <p id="dialog-message" className="mb-6 text-sm text-slate-400">
               {message}
             </p>
 
@@ -169,7 +169,7 @@ export function ConfirmationDialog({
                 ref={cancelRef}
                 onClick={onCancel}
                 disabled={isLoading}
-                className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:opacity-50"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-transparent px-4 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 disabled:opacity-50"
               >
                 {cancelLabel}
               </button>

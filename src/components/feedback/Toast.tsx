@@ -73,17 +73,17 @@ export function useToast() {
 // ─── Individual Toast ─────────────────────────────────────────────────────────
 
 const VARIANT_STYLES: Record<ToastVariant, string> = {
-  success: 'bg-white border-l-4 border-green-500',
-  error: 'bg-white border-l-4 border-red-500',
-  info: 'bg-white border-l-4 border-blue-500',
-  warning: 'bg-white border-l-4 border-amber-500',
+  success: 'bg-[#171c33] border-l-4 border-emerald-500',
+  error: 'bg-[#171c33] border-l-4 border-red-500',
+  info: 'bg-[#171c33] border-l-4 border-blue-500',
+  warning: 'bg-[#171c33] border-l-4 border-amber-500',
 };
 
 const ICON_COLORS: Record<ToastVariant, string> = {
-  success: 'text-green-500',
-  error: 'text-red-500',
-  info: 'text-blue-500',
-  warning: 'text-amber-500',
+  success: 'text-emerald-400',
+  error: 'text-red-400',
+  info: 'text-blue-400',
+  warning: 'text-amber-400',
 };
 
 function ToastIcon({ variant }: { variant: ToastVariant }) {
@@ -144,19 +144,19 @@ function SingleToast({ toast, onDismiss }: SingleToastProps) {
       animate={{ opacity: 1, x: 0, scale: 1 }}
       exit={{ opacity: 0, x: 80, scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-      className={`flex w-full items-start gap-3 rounded-lg p-4 shadow-lg ring-1 ring-black/5 ${VARIANT_STYLES[toast.variant]}`}
+      className={`flex w-full items-start gap-3 rounded-xl border border-slate-800 bg-[#171c33] p-4 shadow-xl shadow-black/40 ${VARIANT_STYLES[toast.variant]}`}
     >
       <ToastIcon variant={toast.variant} />
 
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-gray-900">{toast.message}</p>
+        <p className="text-sm font-medium text-white">{toast.message}</p>
         {toast.action && (
           <button
             onClick={() => {
               toast.action!.onClick();
               onDismiss(toast.id);
             }}
-            className="mt-1 text-sm font-semibold text-blue-600 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
+            className="mt-1 text-sm font-semibold text-blue-400 hover:text-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1"
           >
             {toast.action.label}
           </button>
@@ -167,7 +167,7 @@ function SingleToast({ toast, onDismiss }: SingleToastProps) {
         ref={closeRef}
         onClick={() => onDismiss(toast.id)}
         aria-label="Dismiss notification"
-        className="flex-shrink-0 rounded p-0.5 text-gray-400 transition-colors hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+        className="flex-shrink-0 rounded p-0.5 text-slate-500 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
       >
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

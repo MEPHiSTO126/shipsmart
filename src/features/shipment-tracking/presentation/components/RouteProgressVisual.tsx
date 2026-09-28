@@ -48,12 +48,12 @@ export function RouteProgressVisual({
             <div key={status} className="flex items-center gap-4">
               <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
                 <div
-                  className={`h-4 w-4 rounded-full transition-all duration-300 ${
+                  className={`h-4 w-4 rounded-full transition-colors duration-300 ${
                     isCompleted
                       ? 'bg-green-500'
                       : isActive
                         ? 'animate-pulse bg-blue-500'
-                        : 'bg-white/10'
+                        : 'bg-slate-800'
                   }`}
                 />
                 {isCompleted && (
