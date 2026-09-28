@@ -39,3 +39,6 @@ export {
 
 export { EmptyState } from './EmptyState';
 export { ErrorState } from './ErrorState';
+
+export { TargetCursor } from './TargetCursor';
+export type { TargetCursorProps } from './TargetCursor';

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import QueryProvider from '@/providers/QueryProvider';
 import { ToastProvider } from '@/components/feedback/Toast';
+import { TargetCursor } from '@/components/ui/TargetCursor';
 import './globals.css';
 
 const geistSans = Geist({
@@ -59,6 +60,15 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+        <TargetCursor
+          targetSelector=".cursor-target, button, a, input, select"
+          spinDuration={3}
+          hideDefaultCursor={true}
+          hoverDuration={0.15}
+          parallaxOn={true}
+          cursorColor="#f97316"
+          cursorColorOnTarget="#ffffff"
+        />
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>
         </QueryProvider>
