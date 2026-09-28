@@ -2,20 +2,18 @@
 
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 :root {
-  --bg-base:    #080b20;
-  --bg-mid:     #0e1235;
-  --bg-accent:  #161b4a;
-  --glass-bg:   rgba(255, 255, 255, 0.055);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-hover:  rgba(255, 255, 255, 0.09);
-  --glow-purple:  rgba(139, 92, 246, 0.15);
-  --glow-blue:    rgba(59, 130, 246, 0.12);
+  --bg-base:    #0b0e1a;
+  --bg-surface: #111527;
+  --bg-raised:  #171c33;
+  --border:     rgba(148, 163, 184, 0.14);
   --text-primary:   #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted:     #64748b;
-  --accent-blue:   #60a5fa;
-  --accent-purple: #a78bfa;
-  --accent-cyan:   #22d3ee;
+  --accent:      #3b82f6;
+  --accent-strong: #2563eb;
+  --success:     #34d399;
+  --warning:     #fbbf24;
+  --danger:      #f87171;
 }
 
 @theme inline {
@@ -30,11 +28,6 @@ html, body {
 
 body {
   background-color: var(--bg-base);
-  /* Radial glow spots for depth */
-  background-image:
-    radial-gradient(ellipse 80% 60% at 20% 0%,  rgba(99, 102, 241, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 40% at 50% 90%, rgba(59, 130, 246, 0.08)  0%, transparent 60%);
   color: var(--text-primary);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   line-height: 1.5;
@@ -143,16 +136,16 @@ textarea:focus-visible,
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0b0e1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #334155;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #475569;
 }
 
 /* Responsive container */
@@ -253,9 +246,9 @@ label {
 .skeleton {
   background: linear-gradient(
     90deg,
-    #e5e7eb 25%,
-    #f3f4f6 50%,
-    #e5e7eb 75%
+    #1e293b 25%,
+    #334155 50%,
+    #1e293b 75%
   );
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s infinite;
@@ -269,6 +262,6 @@ label {
 @media (prefers-reduced-motion: reduce) {
   .skeleton {
     animation: none;
-    background: #e5e7eb;
+    background: #1e293b;
   }
 }
