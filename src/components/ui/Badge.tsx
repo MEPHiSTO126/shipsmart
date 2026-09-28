@@ -9,12 +9,12 @@ export interface BadgeProps {
 }
 
 const variantStyles = {
-  default: 'bg-gray-100 text-gray-800',
-  success: 'bg-green-100 text-green-800',
-  warning: 'bg-amber-100 text-amber-800',
-  danger: 'bg-red-100 text-red-800',
-  info: 'bg-blue-100 text-blue-800',
-  neutral: 'bg-gray-100 text-gray-700',
+  default: 'bg-slate-800 text-slate-200',
+  success: 'bg-emerald-500/15 text-emerald-300',
+  warning: 'bg-amber-500/15 text-amber-300',
+  danger: 'bg-red-500/15 text-red-300',
+  info: 'bg-blue-500/15 text-blue-300',
+  neutral: 'bg-slate-800 text-slate-300',
 };
 
 const sizeStyles = {
@@ -46,12 +46,12 @@ export function Badge({
             size === 'sm' && 'h-1.5 w-1.5',
             size === 'md' && 'h-2 w-2',
             size === 'lg' && 'h-2.5 w-2.5',
-            variant === 'success' && 'bg-green-500',
-            variant === 'warning' && 'bg-amber-500',
-            variant === 'danger' && 'bg-red-500',
-            variant === 'info' && 'bg-blue-500',
-            variant === 'default' && 'bg-gray-500',
-            variant === 'neutral' && 'bg-gray-400',
+            variant === 'success' && 'bg-emerald-400',
+            variant === 'warning' && 'bg-amber-400',
+            variant === 'danger' && 'bg-red-400',
+            variant === 'info' && 'bg-blue-400',
+            variant === 'default' && 'bg-slate-400',
+            variant === 'neutral' && 'bg-slate-500',
           )}
         />
       )}

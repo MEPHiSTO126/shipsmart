@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import { CurvedInput } from '@/components/ui/CurvedInput';
+import { Input } from '@/components/ui/Input';
 import { useURLFilters } from '@/features/shipment-tracking/presentation/hooks/useURLFilters';
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { ShipmentPriority } from '@/constants/shipment-priority';
@@ -40,68 +40,109 @@ function FilterDropdown({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const selectedLabel = options.find((o) => o.value === value)?.label || placeholder || label;
+
   return (
-    <motion.div
-      ref={dropdownRef}
-      className={`relative ${className}`}
-      whileHover={{ zIndex: 10 }}
-    >
-      <motion.button
+    <div ref={dropdownRef} className={`relative ${className}`}>
+      <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-4 py-2.5 bg-white border rounded-lg text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors cursor-target"
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.98 }}
+        className={`flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+          value
+            ? 'border-blue-500/50 bg-blue-500/10 text-blue-300'
+            : 'border-slate-800 bg-[#111527] text-slate-300 hover:border-slate-700 hover:text-white'
+        }`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={label}
       >
-        <span className="truncate">{options.find(o => o.value === value)?.label || placeholder || label}</span>
-        <motion.svg
-          className="ml-2 h-4 w-4 text-gray-500 flex-shrink-0"
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+        <span className="truncate">{selectedLabel}</span>
+        <svg
+          className={`h-4 w-4 flex-shrink-0 text-slate-500 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </motion.svg>
-      </motion.button>
+        </svg>
+      </button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute top-full left-0 right-0 mt-1 bg-white border rounded-lg shadow-lg py-1 z-50"
-            style={{ borderColor: '#e5e7eb' }}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.12 }}
+            className="absolute top-full right-0 left-0 z-50 mt-1 overflow-hidden rounded-lg border border-slate-800 bg-[#171c33] py-1 shadow-xl shadow-black/40"
             role="listbox"
+            aria-label={label}
           >
             {options.map((option) => (
-              <motion.button
+              <button
                 key={option.value}
+                type="button"
                 onClick={() => {
                   onChange(option.value);
                   setIsOpen(false);
                 }}
-                className={`w-full px-4 py-2 text-sm text-left transition-colors ${
+                className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                   value === option.value
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'bg-blue-500/10 font-medium text-blue-300'
+                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                 }`}
                 role="option"
                 aria-selected={value === option.value}
-                whileHover={{ x: 4 }}
               >
                 {option.label}
-              </motion.button>
+              </button>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
+  );
+}
+
+function SearchField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  return (
+    <div className="relative min-w-[280px] flex-1">
+      <svg
+        className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+        />
+      </svg>
+      <Input
+        type="search"
+        aria-label="Search by tracking number or customer"
+        placeholder="Search tracking # or customer..."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="pr-9 pl-9"
+      />
+      {value && (
+        <button
+          type="button"
+          onClick={() => onChange('')}
+          aria-label="Clear search"
+          className="absolute top-1/2 right-2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-800 hover:text-white"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -137,95 +178,52 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
     { value: 'lastUpdated-desc', label: 'Last updated (newest first)' },
   ];
 
-  const handleSearchChange = (value: string) => {
-    setSearch(value);
-  };
-
-  const handleSearchSubmit = (value: string) => {
-    setSearch(value);
-  };
-
   if (isMobile) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         className="space-y-4"
       >
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.05 }}
-        >
-          <CurvedInput
-            value={filters.search || ''}
-            onChange={handleSearchChange}
-            onSubmit={handleSearchSubmit}
-            placeholder="Search tracking # or customer..."
-            bend={0}
-            height={48}
-            width="100%"
-            showButton={false}
-            showIcon={true}
-            theme="light"
-            fontSize={14}
-            borderWidth={1.5}
-            backgroundColor="#ffffff"
-            textColor="#1f2937"
-            placeholderColor="#9ca3af"
-            borderColor="#d1d5db"
-            cornerRadius={18}
-          />
-        </motion.div>
+        <SearchField value={filters.search || ''} onChange={setSearch} />
 
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1 }}
-          className="flex items-center justify-between"
-        >
-          <motion.button
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex items-center gap-2 w-full justify-start px-4 py-2.5 bg-white border rounded-lg text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors cursor-target"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
+            aria-expanded={mobileOpen}
+            className="flex w-full items-center justify-start gap-2 rounded-lg border border-slate-800 bg-[#111527] px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-slate-700"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Filters
             {hasActiveFilters && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="ml-2 rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700"
-              >
+              <span className="ml-1 rounded-full bg-blue-500/15 px-2 py-0.5 text-xs font-medium text-blue-300">
                 Active
-              </motion.span>
+              </span>
             )}
-          </motion.button>
+          </button>
           {hasActiveFilters && (
-            <motion.button
+            <button
+              type="button"
               onClick={clearFilters}
-              className="px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors cursor-target"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="shrink-0 rounded-lg px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
             >
-              Clear all
-            </motion.button>
+              Clear
+            </button>
           )}
-        </motion.div>
+        </div>
 
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="space-y-4 rounded-lg border bg-gray-50 p-4"
-              style={{ borderColor: '#e5e7eb' }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
+              className="space-y-3 rounded-xl border border-slate-800 bg-[#111527] p-4"
             >
               <FilterDropdown
                 label="Status"
@@ -234,7 +232,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                 onChange={(v) => setStatus(v as ShipmentStatus | '')}
                 placeholder="All statuses"
               />
-
               <FilterDropdown
                 label="Priority"
                 value={filters.priority || ''}
@@ -242,7 +239,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                 onChange={(v) => setPriority(v as ShipmentPriority | '')}
                 placeholder="All priorities"
               />
-
               <FilterDropdown
                 label="Destination"
                 value={filters.destination || ''}
@@ -250,7 +246,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
                 onChange={setDestination}
                 placeholder="All destinations"
               />
-
               <FilterDropdown
                 label="Sort by"
                 value={`${sort.field}-${sort.order}`}
@@ -273,44 +268,14 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="flex flex-col gap-4 lg:flex-row lg:items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      className="flex flex-col gap-3 lg:flex-row lg:items-center"
     >
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.05 }}
-        className="flex-1 min-w-[280px]"
-      >
-        <CurvedInput
-          value={filters.search || ''}
-          onChange={handleSearchChange}
-          onSubmit={handleSearchSubmit}
-          placeholder="Search tracking # or customer..."
-          bend={8}
-          height={52}
-          width="100%"
-          showButton={false}
-          showIcon={true}
-          theme="light"
-          fontSize={15}
-          borderWidth={1.5}
-          backgroundColor="#ffffff"
-          textColor="#1f2937"
-          placeholderColor="#9ca3af"
-          borderColor="#d1d5db"
-          cornerRadius={18}
-        />
-      </motion.div>
+      <SearchField value={filters.search || ''} onChange={setSearch} />
 
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.1 }}
-        className="flex flex-wrap items-center gap-3 lg:ml-auto"
-      >
+      <div className="flex flex-wrap items-center gap-2 lg:ml-auto">
         <FilterDropdown
           label="Status"
           value={filters.status || ''}
@@ -319,7 +284,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           placeholder="Status"
           className="min-w-[140px]"
         />
-
         <FilterDropdown
           label="Priority"
           value={filters.priority || ''}
@@ -328,7 +292,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           placeholder="Priority"
           className="min-w-[140px]"
         />
-
         <FilterDropdown
           label="Destination"
           value={filters.destination || ''}
@@ -337,7 +300,6 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           placeholder="Destination"
           className="min-w-[140px]"
         />
-
         <FilterDropdown
           label="Sort by"
           value={`${sort.field}-${sort.order}`}
@@ -352,24 +314,19 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           placeholder="Sort by"
           className="min-w-[160px]"
         />
-
-{hasActiveFilters && (
-            <motion.button
-              onClick={clearFilters}
-              className="px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-1 cursor-target"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {hasActiveFilters && (
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
             Clear
-          </motion.button>
+          </button>
         )}
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

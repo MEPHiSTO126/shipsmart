@@ -88,9 +88,7 @@ export function ShipmentTable({
               <TableRow
                 key={shipment.id}
                 onClick={() => onSelect(shipment.trackingNumber)}
-                className={`cursor-pointer transition-colors shipment-row ${
-                  isSelected ? 'bg-blue-500/10' : 'hover:bg-white/[0.04]'
-                }`}
+                className={`cursor-pointer ${isSelected ? 'bg-blue-500/10' : ''}`}
               >
                 <TableCell className="font-mono font-medium">
                   {shipment.trackingNumber}

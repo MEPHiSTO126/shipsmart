@@ -52,13 +52,13 @@ export function ShipmentCard({
     <Card
       variant={isSelected ? 'bordered' : 'hover'}
       onClick={() => onSelect(shipment.trackingNumber)}
-      className={`transition-all ${isSelected ? 'ring-2 ring-blue-500' : ''}`}
+      className={`transition-colors ${isSelected ? 'border-blue-500/60' : ''}`}
     >
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono font-medium text-gray-900">
+              <span className="font-mono font-medium text-white">
                 {shipment.trackingNumber}
               </span>
               <Badge variant={statusConfig.variant} dot>
@@ -68,10 +68,10 @@ export function ShipmentCard({
                 {priorityConfig.label}
               </Badge>
             </div>
-            <p className="mt-2 truncate text-sm font-medium text-gray-900">
+            <p className="mt-2 truncate text-sm font-medium text-slate-200">
               {shipment.customerName}
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-gray-600">
+            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-slate-400">
               <span className="flex items-center gap-1">
                 <svg
                   className="h-4 w-4"
@@ -127,7 +127,7 @@ export function ShipmentCard({
                 {shipment.courier.name}
               </span>
             </div>
-            <p className="mt-2 text-xs text-gray-600">
+            <p className="mt-2 text-xs text-slate-500">
               Updated{' '}
               {formatDistanceToNow(shipment.lastUpdated, { addSuffix: true })}
             </p>
