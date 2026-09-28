@@ -152,11 +152,11 @@ interface TimelineProps {
 export function Timeline({ events }: TimelineProps) {
   if (!events.length) {
     return (
-      <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
+      <div className="rounded-xl border border-stone-800 bg-[#1c1917] p-6">
         <h2 className="mb-4 text-lg font-semibold text-white">
           Activity Timeline
         </h2>
-        <div className="py-8 text-center text-slate-500">
+        <div className="py-8 text-center text-stone-500">
           No timeline events available
         </div>
       </div>
@@ -164,17 +164,17 @@ export function Timeline({ events }: TimelineProps) {
   }
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
+    <div className="rounded-xl border border-stone-800 bg-[#1c1917] p-6">
       <h2 className="mb-6 text-lg font-semibold text-white">
         Activity Timeline
       </h2>
       <div className="relative">
-        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-slate-800" />
+        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-stone-800" />
         <div className="space-y-6">
           {events.map((event) => (
             <div key={event.id}>
               <div className="relative flex gap-4">
-                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-slate-800 bg-[#0b0e1a]">
+                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-stone-800 bg-[#0c0a09]">
                   <div
                     className={`flex h-5 w-5 items-center justify-center ${
                       event.status === 'delivered'
@@ -186,8 +186,8 @@ export function Timeline({ events }: TimelineProps) {
                             : event.status === 'out_for_delivery'
                               ? 'text-amber-400'
                               : event.status === 'in_transit'
-                                ? 'text-blue-400'
-                                : 'text-slate-500'
+                                ? 'text-sky-400'
+                                : 'text-stone-500'
                     }`}
                   >
                     {STATUS_ICONS[event.status] || (
@@ -219,10 +219,10 @@ export function Timeline({ events }: TimelineProps) {
                       <p className="font-medium text-white capitalize">
                         {event.status.replace('_', ' ')}
                       </p>
-                      <p className="mt-1 text-sm text-slate-300">
+                      <p className="mt-1 text-sm text-stone-300">
                         {event.description}
                       </p>
-                      <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
+                      <p className="mt-1 flex items-center gap-1 text-xs text-stone-500">
                         <svg
                           className="h-3 w-3"
                           fill="none"
@@ -256,7 +256,7 @@ export function Timeline({ events }: TimelineProps) {
                           },
                         )}
                       </p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-stone-400">
                         {new Date(event.timestamp).toLocaleTimeString(
                           undefined,
                           {

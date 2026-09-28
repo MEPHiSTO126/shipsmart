@@ -80,7 +80,7 @@ export function ShipmentDetailContent({
           action={
             <Link
               href="/shipments"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-[#111527] px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-lg border border-stone-800 bg-[#1c1917] px-5 py-2.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-700 hover:text-white"
             >
               Back to dashboard
             </Link>
@@ -137,7 +137,7 @@ export function ShipmentDetailContent({
           actions={
             <Link
               href="/shipments"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-[#111527] px-4 py-2 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-lg border border-stone-800 bg-[#1c1917] px-4 py-2 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-700 hover:text-white"
             >
               ← Back to dashboard
             </Link>
@@ -187,39 +187,39 @@ function DetailSkeleton() {
   return (
     <Container>
       <div className="mx-auto max-w-4xl animate-pulse space-y-6 p-6">
-        <div className="h-8 w-1/3 rounded bg-slate-800" />
+        <div className="h-8 w-1/3 rounded bg-stone-800" />
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
-            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
-              <div className="h-6 w-1/4 rounded bg-slate-800" />
-              <div className="h-4 w-1/2 rounded bg-slate-800" />
+            <div className="space-y-4 rounded-xl border border-stone-800 bg-[#1c1917] p-6">
+              <div className="h-6 w-1/4 rounded bg-stone-800" />
+              <div className="h-4 w-1/2 rounded bg-stone-800" />
               <div className="grid grid-cols-3 gap-4">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-12 rounded bg-slate-800" />
+                  <div key={i} className="h-12 rounded bg-stone-800" />
                 ))}
               </div>
             </div>
-            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
-              <div className="h-4 w-1/4 rounded bg-slate-800" />
+            <div className="space-y-4 rounded-xl border border-stone-800 bg-[#1c1917] p-6">
+              <div className="h-4 w-1/4 rounded bg-stone-800" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-16 rounded bg-slate-800" />
+                  <div key={i} className="h-16 rounded bg-stone-800" />
                 ))}
               </div>
             </div>
           </div>
           <div className="space-y-6">
-            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
-              <div className="h-4 w-1/3 rounded bg-slate-800" />
+            <div className="space-y-4 rounded-xl border border-stone-800 bg-[#1c1917] p-6">
+              <div className="h-4 w-1/3 rounded bg-stone-800" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-12 rounded bg-slate-800" />
+                  <div key={i} className="h-12 rounded bg-stone-800" />
                 ))}
               </div>
             </div>
-            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
-              <div className="h-4 w-1/3 rounded bg-slate-800" />
-              <div className="h-12 rounded bg-slate-800" />
+            <div className="space-y-4 rounded-xl border border-stone-800 bg-[#1c1917] p-6">
+              <div className="h-4 w-1/3 rounded bg-stone-800" />
+              <div className="h-12 rounded bg-stone-800" />
             </div>
           </div>
         </div>

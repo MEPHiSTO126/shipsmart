@@ -26,7 +26,7 @@ const CONFIRM_BUTTON_STYLES: Record<
   warning:
     'bg-amber-500 text-white hover:bg-amber-600 focus-visible:ring-amber-400',
   primary:
-    'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500',
+    'bg-orange-600 text-white hover:bg-orange-700 focus-visible:ring-orange-500',
 };
 
 export function ConfirmationDialog({
@@ -130,7 +130,7 @@ export function ConfirmationDialog({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            className="w-full max-w-md rounded-xl border border-slate-800 bg-[#171c33] p-6 shadow-2xl shadow-black/50"
+            className="w-full max-w-md rounded-xl border border-stone-800 bg-[#292524] p-6 shadow-2xl shadow-black/50"
           >
             {/* Icon */}
             <div className="mb-4 flex items-center gap-3">
@@ -160,7 +160,7 @@ export function ConfirmationDialog({
               </h2>
             </div>
 
-            <p id="dialog-message" className="mb-6 text-sm text-slate-400">
+            <p id="dialog-message" className="mb-6 text-sm text-stone-400">
               {message}
             </p>
 
@@ -169,7 +169,7 @@ export function ConfirmationDialog({
                 ref={cancelRef}
                 onClick={onCancel}
                 disabled={isLoading}
-                className="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-transparent px-4 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 disabled:opacity-50"
+                className="inline-flex items-center justify-center rounded-lg border border-stone-700 bg-transparent px-4 py-2.5 text-sm font-semibold text-stone-200 transition-colors hover:bg-stone-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2 disabled:opacity-50"
               >
                 {cancelLabel}
               </button>

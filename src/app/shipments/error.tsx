@@ -39,7 +39,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
           <h1 className="mb-2 text-2xl font-bold text-white">
             Something went wrong
           </h1>
-          <p className="mb-2 text-slate-400">
+          <p className="mb-2 text-stone-400">
             We couldn&apos;t load the shipments dashboard. This might be a
             temporary network issue.
           </p>
@@ -52,7 +52,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               onClick={reset}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
             >
               <svg
                 className="h-4 w-4"
@@ -72,7 +72,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
             </button>
             <button
               onClick={() => (window.location.href = '/')}
-              className="inline-flex items-center justify-center rounded-lg border border-slate-800 bg-[#111527] px-6 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
+              className="inline-flex items-center justify-center rounded-lg border border-stone-800 bg-[#1c1917] px-6 py-2.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-700 hover:text-white"
             >
               Go home
             </button>

@@ -42,7 +42,7 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
   const priorityConfig = PRIORITY_BADGE[shipment.priority];
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
+    <div className="rounded-xl border border-stone-800 bg-[#1c1917] p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1">
           <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -59,12 +59,12 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
           <p className="mb-2 text-2xl font-semibold text-white">
             {shipment.customerName}
           </p>
-          <p className="text-slate-400">
-            Courier: {shipment.courier.name} <span className="text-slate-500">(ID: {shipment.courier.id})</span>
+          <p className="text-stone-400">
+            Courier: {shipment.courier.name} <span className="text-stone-500">(ID: {shipment.courier.id})</span>
           </p>
         </div>
         <div className="flex flex-col items-end gap-1 text-right sm:items-end">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Last updated</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">Last updated</p>
           <p className="font-medium text-white">
             {new Date(shipment.lastUpdated).toLocaleDateString(undefined, {
               month: 'short',
@@ -72,7 +72,7 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
               year: 'numeric',
             })}
           </p>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-stone-400">
             {new Date(shipment.lastUpdated).toLocaleTimeString(undefined, {
               hour: '2-digit',
               minute: '2-digit',

@@ -15,7 +15,7 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
     >
       <div>
         <h1 className="text-3xl font-bold text-white">{title}</h1>
-        {description && <p className="mt-1 text-slate-400">{description}</p>}
+        {description && <p className="mt-1 text-stone-400">{description}</p>}
         {children && <div className="mt-4">{children}</div>}
       </div>
       {actions && (

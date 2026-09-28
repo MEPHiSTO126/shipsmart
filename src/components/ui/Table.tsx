@@ -13,7 +13,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
           ref={ref}
           className={twMerge(
             'w-full caption-bottom text-sm',
-            stickyHeader && '[&_thead]:sticky [&_thead]:top-0 [&_thead]:bg-[#111527]',
+            stickyHeader && '[&_thead]:sticky [&_thead]:top-0 [&_thead]:bg-[#1c1917]',
             className,
           )}
           {...props}
@@ -33,7 +33,7 @@ export const TableHeader = forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={twMerge('[&_tr]:border-b [&_tr]:border-slate-800', className)}
+    className={twMerge('[&_tr]:border-b [&_tr]:border-stone-800', className)}
     {...props}
   />
 ));
@@ -58,7 +58,7 @@ export const TableRow = forwardRef<
   <tr
     ref={ref}
     className={twMerge(
-      'border-b border-slate-800 transition-colors hover:bg-slate-800/40 data-[state=selected]:bg-blue-500/10',
+      'border-b border-stone-800 transition-colors hover:bg-stone-800/40 data-[state=selected]:bg-orange-500/10',
       className,
     )}
     {...props}
@@ -77,8 +77,8 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
     <th
       ref={ref}
       className={twMerge(
-        'h-12 px-4 text-left align-middle font-medium text-slate-400 transition-colors',
-        sortable && 'cursor-pointer select-none hover:bg-slate-800/60 hover:text-slate-200',
+        'h-12 px-4 text-left align-middle font-medium text-stone-400 transition-colors',
+        sortable && 'cursor-pointer select-none hover:bg-stone-800/60 hover:text-stone-200',
         className,
       )}
       onClick={sortable ? onSort : undefined}
@@ -120,7 +120,7 @@ export const TableCaption = forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={twMerge('mt-4 text-sm text-slate-500', className)}
+    className={twMerge('mt-4 text-sm text-stone-500', className)}
     {...props}
   />
 ));
@@ -134,7 +134,7 @@ export interface TableEmptyProps {
 export function TableEmpty({ colSpan, message }: TableEmptyProps) {
   return (
     <tr>
-      <td colSpan={colSpan} className="px-4 py-12 text-center text-slate-500">
+      <td colSpan={colSpan} className="px-4 py-12 text-center text-stone-500">
         {message}
       </td>
     </tr>

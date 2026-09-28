@@ -57,23 +57,23 @@ export function ShipmentTable({
       <Table stickyHeader>
         <TableHeader>
           <TableRow>
-            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
+            <TableHead sortable onSort={() => {}} className="text-stone-300 font-semibold">
               Tracking
             </TableHead>
-            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
+            <TableHead sortable onSort={() => {}} className="text-stone-300 font-semibold">
               Customer
             </TableHead>
-            <TableHead className="text-slate-300 font-semibold">Origin</TableHead>
-            <TableHead className="text-slate-300 font-semibold">Destination</TableHead>
-            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
+            <TableHead className="text-stone-300 font-semibold">Origin</TableHead>
+            <TableHead className="text-stone-300 font-semibold">Destination</TableHead>
+            <TableHead sortable onSort={() => {}} className="text-stone-300 font-semibold">
               Status
             </TableHead>
-            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
+            <TableHead sortable onSort={() => {}} className="text-stone-300 font-semibold">
               Est. Delivery
             </TableHead>
-            <TableHead className="text-slate-300 font-semibold">Courier</TableHead>
-            <TableHead className="text-slate-300 font-semibold">Priority</TableHead>
-            <TableHead sortable onSort={() => {}} className="text-slate-300 font-semibold">
+            <TableHead className="text-stone-300 font-semibold">Courier</TableHead>
+            <TableHead className="text-stone-300 font-semibold">Priority</TableHead>
+            <TableHead sortable onSort={() => {}} className="text-stone-300 font-semibold">
               Last Update
             </TableHead>
           </TableRow>
@@ -88,7 +88,7 @@ export function ShipmentTable({
               <TableRow
                 key={shipment.id}
                 onClick={() => onSelect(shipment.trackingNumber)}
-                className={`cursor-pointer ${isSelected ? 'bg-blue-500/10' : ''}`}
+                className={`cursor-pointer ${isSelected ? 'bg-orange-500/10' : ''}`}
               >
                 <TableCell className="font-mono font-medium">
                   {shipment.trackingNumber}
@@ -110,7 +110,7 @@ export function ShipmentTable({
                     {priorityConfig.label}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-slate-400 font-medium">
+                <TableCell className="text-stone-400 font-medium">
                   {formatDistanceToNow(shipment.lastUpdated, {
                     addSuffix: true,
                   })}

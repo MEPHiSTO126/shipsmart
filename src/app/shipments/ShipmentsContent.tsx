@@ -72,7 +72,7 @@ export function ShipmentsContent() {
   }
 
   return (
-    <Container>
+    <Container className="pt-8">
       <PageHeader
         title={
           <Image
@@ -88,7 +88,7 @@ export function ShipmentsContent() {
           <span className="flex items-center gap-2">
             {isFetching && (
               <svg
-                className="h-5 w-5 animate-spin text-blue-600"
+                className="h-5 w-5 animate-spin text-orange-600"
                 viewBox="0 0 24 24"
               >
                 <circle
@@ -108,7 +108,7 @@ export function ShipmentsContent() {
               </svg>
             )}
             {hasActiveFilters && (
-              <span className="rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-700">
+              <span className="mt-1 rounded-full bg-orange-500/15 px-2.5 py-1 text-xs font-medium text-orange-300">
                 Filters active
               </span>
             )}
@@ -118,8 +118,8 @@ export function ShipmentsContent() {
 
       {!summaryLoading && summary && <DashboardStats summary={summary} />}
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-slate-800 bg-[#111527]">
-        <div className="border-b border-slate-800 p-4">
+      <div className="mt-6 overflow-hidden rounded-xl border border-stone-800 bg-[#1c1917]">
+        <div className="border-b border-stone-800 p-4">
           <FilterBar destinations={destinations} />
         </div>
         <div className="p-4">

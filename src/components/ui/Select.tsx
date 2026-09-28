@@ -28,7 +28,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="mb-1 block text-sm font-medium text-slate-300"
+            className="mb-1 block text-sm font-medium text-stone-300"
           >
             {label}
           </label>
@@ -37,11 +37,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={selectId}
           className={twMerge(
-            'w-full cursor-pointer rounded-lg border bg-[#111527] px-3 py-2 text-slate-100 shadow-sm',
-            'focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none transition-colors',
+            'w-full cursor-pointer rounded-lg border bg-[#1c1917] px-3 py-2 text-stone-100 shadow-sm',
+            'focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 focus:outline-none transition-colors',
             'disabled:cursor-not-allowed disabled:opacity-50',
-            '[&>option]:bg-[#171c33] [&>option]:text-slate-100',
-            error ? 'border-red-500/60' : 'border-slate-800',
+            '[&>option]:bg-[#292524] [&>option]:text-stone-100',
+            error ? 'border-red-500/60' : 'border-stone-800',
             className,
           )}
           aria-invalid={error ? 'true' : 'false'}

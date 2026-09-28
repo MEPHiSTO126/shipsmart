@@ -29,7 +29,7 @@ export function ErrorState({
         />
       </svg>
       <h3 className="mb-2 text-lg font-medium text-white">{title}</h3>
-      <p className="mx-auto mb-6 max-w-md text-slate-400">{message}</p>
+      <p className="mx-auto mb-6 max-w-md text-stone-400">{message}</p>
       {onRetry && (
         <Button variant="primary" onClick={onRetry}>
           {retryLabel}

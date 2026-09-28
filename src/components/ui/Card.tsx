@@ -8,12 +8,12 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
     const variants = {
-      default: 'bg-[#111527] border border-slate-800',
+      default: 'bg-[#1c1917] border border-stone-800',
       hover:
-        'bg-[#111527] border border-slate-800 transition-colors hover:border-slate-700 cursor-pointer',
-      bordered: 'bg-transparent border border-slate-800',
-      elevated: 'bg-[#171c33] border border-slate-800',
-      glass: 'bg-[#111527] border border-slate-800',
+        'bg-[#1c1917] border border-stone-800 transition-colors hover:border-stone-700 cursor-pointer',
+      bordered: 'bg-transparent border border-stone-800',
+      elevated: 'bg-[#292524] border border-stone-800',
+      glass: 'bg-[#1c1917] border border-stone-800',
     };
 
     return (
@@ -40,7 +40,7 @@ export const CardHeader = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={twMerge('border-b border-slate-800 px-6 py-4', className)}
+    className={twMerge('border-b border-stone-800 px-6 py-4', className)}
     {...props}
   />
 ));
@@ -52,7 +52,7 @@ export const CardTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={twMerge('text-lg font-semibold text-slate-100', className)}
+    className={twMerge('text-lg font-semibold text-stone-100', className)}
     {...props}
   />
 ));
@@ -64,7 +64,7 @@ export const CardDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={twMerge('mt-1 text-sm text-slate-400', className)}
+    className={twMerge('mt-1 text-sm text-stone-400', className)}
     {...props}
   />
 ));
@@ -85,7 +85,7 @@ export const CardFooter = forwardRef<
   <div
     ref={ref}
     className={twMerge(
-      'border-t border-slate-800 px-6 py-4',
+      'border-t border-stone-800 px-6 py-4',
       className,
     )}
     {...props}

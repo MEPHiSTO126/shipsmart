@@ -22,36 +22,36 @@ function DashboardSkeleton() {
           <StatCardSkeleton key={i} />
         ))}
       </div>
-      <div className="rounded-xl border border-slate-800 bg-[#111527] p-4">
+      <div className="rounded-xl border border-stone-800 bg-[#1c1917] p-4">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-800">
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+              <tr className="border-b border-stone-800">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Tracking #
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Customer
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Origin
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Destination
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Status
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Est. Delivery
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Courier
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Priority
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-400 uppercase">
+                <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-400 uppercase">
                   Last Update
                 </th>
               </tr>

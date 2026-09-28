@@ -10,7 +10,7 @@ interface EmptyStateProps extends HTMLAttributes<HTMLDivElement> {
 export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ className, title, description, action, icon, ...props }, ref) => (
     <div ref={ref} className={`px-4 py-16 text-center ${className}`} {...props}>
-      <div className="mx-auto mb-4 h-16 w-16 text-slate-600">
+      <div className="mx-auto mb-4 h-16 w-16 text-stone-600">
         {icon || (
           <svg
             fill="none"
@@ -28,7 +28,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
         )}
       </div>
       <h3 className="mb-1 text-lg font-medium text-white">{title}</h3>
-      {description && <p className="mb-6 text-slate-400">{description}</p>}
+      {description && <p className="mb-6 text-stone-400">{description}</p>}
       {action && <div className="flex justify-center">{action}</div>}
     </div>
   ),

@@ -58,8 +58,8 @@ function FilterDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={`flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
           value
-            ? 'border-blue-500/50 bg-blue-500/10 text-blue-300'
-            : 'border-slate-800 bg-[#111527] text-slate-300 hover:border-slate-700 hover:text-white'
+            ? 'border-orange-500/50 bg-orange-500/10 text-orange-300'
+            : 'border-stone-800 bg-[#1c1917] text-stone-300 hover:border-stone-700 hover:text-white'
         }`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
@@ -67,7 +67,7 @@ function FilterDropdown({
       >
         <span className="truncate">{selectedLabel}</span>
         <svg
-          className={`h-4 w-4 flex-shrink-0 text-slate-500 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 flex-shrink-0 text-stone-500 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ function FilterDropdown({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.12 }}
-            className="absolute top-full right-0 left-0 z-50 mt-1 overflow-hidden rounded-lg border border-slate-800 bg-[#171c33] py-1 shadow-xl shadow-black/40"
+            className="absolute top-full right-0 left-0 z-50 mt-1 overflow-hidden rounded-lg border border-stone-800 bg-[#292524] py-1 shadow-xl shadow-black/40"
             role="listbox"
             aria-label={label}
           >
@@ -98,8 +98,8 @@ function FilterDropdown({
                 }}
                 className={`w-full px-3 py-2 text-left text-sm transition-colors ${
                   value === option.value
-                    ? 'bg-blue-500/10 font-medium text-blue-300'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-orange-500/10 font-medium text-orange-300'
+                    : 'text-stone-300 hover:bg-stone-800 hover:text-white'
                 }`}
                 role="option"
                 aria-selected={value === option.value}
@@ -118,7 +118,7 @@ function SearchField({ value, onChange }: { value: string; onChange: (v: string)
   return (
     <div className="relative min-w-[280px] flex-1">
       <svg
-        className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-500"
+        className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -transtone-y-1/2 text-stone-500"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -144,7 +144,7 @@ function SearchField({ value, onChange }: { value: string; onChange: (v: string)
           type="button"
           onClick={() => onChange('')}
           aria-label="Clear search"
-          className="absolute top-1/2 right-2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-800 hover:text-white"
+          className="absolute top-1/2 right-2 flex h-6 w-6 -transtone-y-1/2 items-center justify-center rounded-md text-stone-500 transition-colors hover:bg-stone-800 hover:text-white"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -202,14 +202,14 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
-            className="flex w-full items-center justify-start gap-2 rounded-lg border border-slate-800 bg-[#111527] px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-slate-700"
+            className="flex w-full items-center justify-start gap-2 rounded-lg border border-stone-800 bg-[#1c1917] px-3 py-2 text-sm font-medium text-stone-200 transition-colors hover:border-stone-700"
           >
-            <svg className="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <svg className="h-4 w-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>
             Filters
             {hasActiveFilters && (
-              <span className="ml-1 rounded-full bg-blue-500/15 px-2 py-0.5 text-xs font-medium text-blue-300">
+              <span className="ml-1 rounded-full bg-orange-500/15 px-2 py-0.5 text-xs font-medium text-orange-300">
                 Active
               </span>
             )}
@@ -218,7 +218,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
             <button
               type="button"
               onClick={clearFilters}
-              className="shrink-0 rounded-lg px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+              className="shrink-0 rounded-lg px-3 py-2 text-sm text-stone-400 transition-colors hover:bg-stone-800 hover:text-white"
             >
               Clear
             </button>
@@ -232,7 +232,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.15 }}
-              className="space-y-3 rounded-xl border border-slate-800 bg-[#111527] p-4"
+              className="space-y-3 rounded-xl border border-stone-800 bg-[#1c1917] p-4"
             >
               <FilterDropdown
                 label="Status"
@@ -327,7 +327,7 @@ export function FilterBar({ destinations }: { destinations: string[] }) {
           <button
             type="button"
             onClick={clearFilters}
-            className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+            className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-stone-400 transition-colors hover:bg-stone-800 hover:text-white"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

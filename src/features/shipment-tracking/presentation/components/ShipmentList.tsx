@@ -33,32 +33,32 @@ export function ShipmentList({
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                <tr className="border-b border-stone-800">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Tracking #
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Customer
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Origin
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Destination
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Status
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Est. Delivery
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Courier
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Priority
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-slate-500 uppercase">
+                  <th className="px-4 py-3 text-left text-xs font-medium tracking-wider text-stone-500 uppercase">
                     Last Update
                   </th>
                 </tr>
@@ -83,7 +83,7 @@ export function ShipmentList({
     return (
       <div className="py-12 text-center">
         <svg
-          className="mx-auto h-12 w-12 text-slate-600"
+          className="mx-auto h-12 w-12 text-stone-600"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -96,7 +96,7 @@ export function ShipmentList({
           />
         </svg>
         <h3 className="mt-2 text-sm font-medium text-white">No shipments</h3>
-        <p className="mt-1 text-sm text-slate-400">{emptyMessage}</p>
+        <p className="mt-1 text-sm text-stone-400">{emptyMessage}</p>
       </div>
     );
   }

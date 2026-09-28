@@ -52,7 +52,7 @@ export function ShipmentCard({
     <Card
       variant={isSelected ? 'bordered' : 'hover'}
       onClick={() => onSelect(shipment.trackingNumber)}
-      className={`transition-colors ${isSelected ? 'border-blue-500/60' : ''}`}
+      className={`transition-colors ${isSelected ? 'border-orange-500/60' : ''}`}
     >
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-4">
@@ -68,10 +68,10 @@ export function ShipmentCard({
                 {priorityConfig.label}
               </Badge>
             </div>
-            <p className="mt-2 truncate text-sm font-medium text-slate-200">
+            <p className="mt-2 truncate text-sm font-medium text-stone-200">
               {shipment.customerName}
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-slate-400">
+            <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-stone-400">
               <span className="flex items-center gap-1">
                 <svg
                   className="h-4 w-4"
@@ -127,7 +127,7 @@ export function ShipmentCard({
                 {shipment.courier.name}
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-stone-500">
               Updated{' '}
               {formatDistanceToNow(shipment.lastUpdated, { addSuffix: true })}
             </p>

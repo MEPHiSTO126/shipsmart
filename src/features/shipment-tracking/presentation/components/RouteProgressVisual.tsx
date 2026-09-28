@@ -28,7 +28,7 @@ export function RouteProgressVisual({
   const isDeliveryFailed = events.some((e) => e.status === 'delivery_failed');
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
+    <div className="rounded-xl border border-stone-800 bg-[#1c1917] p-6">
       <h3 className="mb-6 text-lg font-semibold text-white">
         Route Progress
       </h3>
@@ -52,8 +52,8 @@ export function RouteProgressVisual({
                     isCompleted
                       ? 'bg-green-500'
                       : isActive
-                        ? 'animate-pulse bg-blue-500'
-                        : 'bg-slate-800'
+                        ? 'animate-pulse bg-orange-500'
+                        : 'bg-stone-800'
                   }`}
                 />
                 {isCompleted && (
@@ -75,12 +75,12 @@ export function RouteProgressVisual({
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <span
-                    className={`font-medium capitalize ${isActive ? 'text-blue-400' : isCompleted ? 'text-white' : 'text-slate-500'}`}
+                    className={`font-medium capitalize ${isActive ? 'text-orange-400' : isCompleted ? 'text-white' : 'text-stone-500'}`}
                   >
                     {SHIPMENT_STATUS_LABELS[status]}
                   </span>
                   {isActive && (
-                    <span className="rounded-full bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 text-xs text-blue-400">
+                    <span className="rounded-full bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 text-xs text-orange-400">
                       {isDelayed && status === 'delayed'
                         ? 'Delayed'
                         : isDeliveryFailed && status === 'delivery_failed'
@@ -90,7 +90,7 @@ export function RouteProgressVisual({
                   )}
                 </div>
                 <p
-                  className={`text-sm ${isCompleted ? 'text-green-400' : isActive ? 'text-blue-400' : 'text-slate-500'}`}
+                  className={`text-sm ${isCompleted ? 'text-green-400' : isActive ? 'text-orange-400' : 'text-stone-500'}`}
                 >
                   {hasEvent && (
                     <>

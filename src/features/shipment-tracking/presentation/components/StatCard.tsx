@@ -11,11 +11,11 @@ interface StatCardProps {
 }
 
 const VARIANT_ICON_COLOR = {
-  default: 'text-slate-400',
+  default: 'text-stone-400',
   success: 'text-emerald-400',
   warning: 'text-amber-400',
   danger: 'text-red-400',
-  info: 'text-blue-400',
+  info: 'text-sky-400',
 };
 
 export function StatCard({
@@ -37,7 +37,7 @@ export function StatCard({
         <CardContent className="p-5">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
                 {title}
               </p>
               <p className="mt-2 text-3xl font-bold text-white tabular-nums">
@@ -52,11 +52,11 @@ export function StatCard({
                   >
                     {trend.value >= 0 ? '↑' : '↓'} {Math.abs(trend.value)}%
                   </span>
-                  <span className="text-slate-500">{trend.label}</span>
+                  <span className="text-stone-500">{trend.label}</span>
                 </div>
               )}
             </div>
-            <div className="rounded-lg bg-slate-800 p-2.5">
+            <div className="rounded-lg bg-stone-800 p-2.5">
               <span className={VARIANT_ICON_COLOR[variant]}>{icon}</span>
             </div>
           </div>
