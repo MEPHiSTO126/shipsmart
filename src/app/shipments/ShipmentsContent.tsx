@@ -13,7 +13,6 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { Container } from '@/components/layout/Container';
 import { getUniqueDestinations } from '@/features/shipment-tracking/application/use-cases/filter-shipments.use-case';
 import Image from 'next/image';
-import { DecryptedText } from '@/components/ui/DecryptedText';
 
 export function ShipmentsContent() {
   const { filters, sort, hasActiveFilters } = useURLFilters();
@@ -40,6 +39,9 @@ export function ShipmentsContent() {
   } = useShipments(shipmentFilters, sort);
 
   const destinations = getUniqueDestinations(shipments);
+
+  const inTransitCount = shipments.filter((s) => s.status === 'in_transit').length;
+  const delayedCount = shipments.filter((s) => s.status === 'delayed').length;
 
   const handleSelect = (trackingNumber: string) => {
     window.location.href = `/shipments/${trackingNumber}`;
@@ -78,22 +80,10 @@ export function ShipmentsContent() {
             alt="ShipSmart Logo"
             width={180}
             height={40}
-            className="cursor-target"
             style={{ objectFit: 'contain' }}
           />
         }
-        description={
-          <DecryptedText
-            text="Monitor and manage all shipments across the network"
-            animateOn="view"
-            revealDirection="center"
-            speed={40}
-            maxIterations={15}
-            sequential={true}
-            className="text-gray-600"
-            parentClassName="inline-block"
-          />
-        }
+        description={`${shipments.length} shipments across ${destinations.length} routes · ${inTransitCount} in transit · ${delayedCount} delayed`}
         actions={
           <span className="flex items-center gap-2">
             {isFetching && (
@@ -128,8 +118,8 @@ export function ShipmentsContent() {
 
       {!summaryLoading && summary && <DashboardStats summary={summary} />}
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] shadow-xl shadow-black/30 backdrop-blur-md">
-        <div className="border-b border-white/10 p-4">
+      <div className="mt-6 overflow-hidden rounded-xl border border-slate-800 bg-[#111527]">
+        <div className="border-b border-slate-800 p-4">
           <FilterBar destinations={destinations} />
         </div>
         <div className="p-4">
