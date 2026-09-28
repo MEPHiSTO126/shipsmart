@@ -2,7 +2,6 @@ import { Shipment } from '@/features/shipment-tracking/domain';
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { ShipmentPriority } from '@/constants/shipment-priority';
 import { Badge } from '@/components/ui';
-import { motion } from 'framer-motion';
 
 interface ShipmentDetailHeaderProps {
   shipment: Shipment;
@@ -43,12 +42,7 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
   const priorityConfig = PRIORITY_BADGE[shipment.priority];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md"
-    >
+    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex-1">
           <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -86,6 +80,6 @@ export function ShipmentDetailHeader({ shipment }: ShipmentDetailHeaderProps) {
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

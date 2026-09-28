@@ -22,7 +22,6 @@ import { EmptyState, ErrorState } from '@/components/ui';
 import { Container } from '@/components/layout/Container';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { TrackingNumber } from '@/features/shipment-tracking/domain/value-objects/tracking-number';
-import { motion } from 'framer-motion';
 import { useToast } from '@/components/feedback/Toast';
 import { SHIPMENT_STATUS_LABELS } from '@/constants/shipment-status';
 
@@ -81,7 +80,7 @@ export function ShipmentDetailContent({
           action={
             <Link
               href="/shipments"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-5 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-[#111527] px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
             >
               Back to dashboard
             </Link>
@@ -120,11 +119,7 @@ export function ShipmentDetailContent({
 
   return (
     <Container className="py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
+      <div>
         <div className="mb-6">
           <Link href="/shipments" className="inline-block transition-opacity hover:opacity-80">
             <Image
@@ -142,7 +137,7 @@ export function ShipmentDetailContent({
           actions={
             <Link
               href="/shipments"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-4 py-2 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-[#111527] px-4 py-2 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
             >
               ← Back to dashboard
             </Link>
@@ -151,48 +146,28 @@ export function ShipmentDetailContent({
 
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.4 }}
-            >
+            <div>
               <ShipmentDetailHeader shipment={shipment} />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-            >
+            <div>
               <RouteInfo shipment={shipment} />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-            >
+            <div>
               <Timeline events={events} />
-            </motion.div>
+            </div>
           </div>
 
           <div className="space-y-6 lg:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.4 }}
-            >
+            <div>
               <RouteProgressVisual
                 currentStatus={shipment.status}
                 events={events}
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.4 }}
-            >
+            <div>
               <StatusActionBar
                 currentStatus={shipment.status}
                 nextStatuses={nextStatuses}
@@ -200,10 +175,10 @@ export function ShipmentDetailContent({
                 isMutating={isMutating}
                 onAdvance={handleAdvanceStatus}
               />
-            </motion.div>
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </Container>
   );
 }
@@ -212,39 +187,39 @@ function DetailSkeleton() {
   return (
     <Container>
       <div className="mx-auto max-w-4xl animate-pulse space-y-6 p-6">
-        <div className="h-8 w-1/3 rounded bg-gray-200" />
+        <div className="h-8 w-1/3 rounded bg-slate-800" />
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
-            <div className="space-y-4 rounded-lg border bg-white p-6">
-              <div className="h-6 w-1/4 rounded bg-gray-200" />
-              <div className="h-4 w-1/2 rounded bg-gray-200" />
+            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
+              <div className="h-6 w-1/4 rounded bg-slate-800" />
+              <div className="h-4 w-1/2 rounded bg-slate-800" />
               <div className="grid grid-cols-3 gap-4">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-12 rounded bg-gray-200" />
+                  <div key={i} className="h-12 rounded bg-slate-800" />
                 ))}
               </div>
             </div>
-            <div className="space-y-4 rounded-lg border bg-white p-6">
-              <div className="h-4 w-1/4 rounded bg-gray-200" />
+            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
+              <div className="h-4 w-1/4 rounded bg-slate-800" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-16 rounded bg-gray-200" />
+                  <div key={i} className="h-16 rounded bg-slate-800" />
                 ))}
               </div>
             </div>
           </div>
           <div className="space-y-6">
-            <div className="space-y-4 rounded-lg border bg-white p-6">
-              <div className="h-4 w-1/3 rounded bg-gray-200" />
+            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
+              <div className="h-4 w-1/3 rounded bg-slate-800" />
               <div className="space-y-3">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="h-12 rounded bg-gray-200" />
+                  <div key={i} className="h-12 rounded bg-slate-800" />
                 ))}
               </div>
             </div>
-            <div className="space-y-4 rounded-lg border bg-white p-6">
-              <div className="h-4 w-1/3 rounded bg-gray-200" />
-              <div className="h-12 rounded bg-gray-200" />
+            <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
+              <div className="h-4 w-1/3 rounded bg-slate-800" />
+              <div className="h-12 rounded bg-slate-800" />
             </div>
           </div>
         </div>

@@ -85,7 +85,7 @@ export const CardFooter = forwardRef<
   <div
     ref={ref}
     className={twMerge(
-      'border-t border-slate-800 bg-white/[0.02] px-6 py-4',
+      'border-t border-slate-800 px-6 py-4',
       className,
     )}
     {...props}

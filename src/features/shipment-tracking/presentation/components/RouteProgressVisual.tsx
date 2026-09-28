@@ -1,6 +1,5 @@
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 import { TimelineEvent } from '@/features/shipment-tracking/domain/entities/timeline-event';
-import { motion } from 'framer-motion';
 import { SHIPMENT_STATUS_LABELS } from '@/constants/shipment-status';
 
 interface RouteProgressVisualProps {
@@ -29,7 +28,7 @@ export function RouteProgressVisual({
   const isDeliveryFailed = events.some((e) => e.status === 'delivery_failed');
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
       <h3 className="mb-6 text-lg font-semibold text-white">
         Route Progress
       </h3>
@@ -46,13 +45,7 @@ export function RouteProgressVisual({
             (isDeliveryFailed && status === 'delivery_failed');
 
           return (
-            <motion.div
-              key={status}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.08 }}
-              className="flex items-center gap-4"
-            >
+            <div key={status} className="flex items-center gap-4">
               <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full">
                 <div
                   className={`h-4 w-4 rounded-full transition-all duration-300 ${
@@ -116,20 +109,16 @@ export function RouteProgressVisual({
                   )}
                 </p>
               </div>
-            </motion.div>
+            </div>
           );
         })}
 
         {/* Exceptional statuses */}
         {isDelayed && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4 rounded-lg border border-red-100 bg-red-50 p-3"
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+          <div className="flex items-center gap-4 rounded-lg border border-red-500/20 bg-red-500/10 p-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/15">
               <svg
-                className="h-5 w-5 text-red-600"
+                className="h-5 w-5 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -143,8 +132,8 @@ export function RouteProgressVisual({
               </svg>
             </div>
             <div className="flex-1">
-              <p className="font-medium text-red-800">Delayed</p>
-              <p className="text-sm text-red-600">
+              <p className="font-medium text-red-300">Delayed</p>
+              <p className="text-sm text-red-400/90">
                 {events
                   .filter((e) => e.status === 'delayed')
                   .map((e) => (
@@ -154,18 +143,14 @@ export function RouteProgressVisual({
                   ))}
               </p>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {isDeliveryFailed && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4 rounded-lg border border-red-100 bg-red-50 p-3"
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+          <div className="flex items-center gap-4 rounded-lg border border-red-500/20 bg-red-500/10 p-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/15">
               <svg
-                className="h-5 w-5 text-red-600"
+                className="h-5 w-5 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -179,8 +164,8 @@ export function RouteProgressVisual({
               </svg>
             </div>
             <div className="flex-1">
-              <p className="font-medium text-red-800">Delivery Failed</p>
-              <p className="text-sm text-red-600">
+              <p className="font-medium text-red-300">Delivery Failed</p>
+              <p className="text-sm text-red-400/90">
                 {events
                   .filter((e) => e.status === 'delivery_failed')
                   .map((e) => (
@@ -190,7 +175,7 @@ export function RouteProgressVisual({
                   ))}
               </p>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </div>

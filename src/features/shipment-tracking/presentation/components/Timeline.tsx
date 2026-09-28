@@ -1,5 +1,4 @@
 import { TimelineEvent } from '@/features/shipment-tracking/domain/entities/timeline-event';
-import { motion } from 'framer-motion';
 import { ShipmentStatus } from '@/features/shipment-tracking/domain/value-objects/status-transition';
 
 export const STATUS_ICONS: Record<ShipmentStatus, React.ReactNode> = {
@@ -153,7 +152,7 @@ interface TimelineProps {
 export function Timeline({ events }: TimelineProps) {
   if (!events.length) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+      <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
         <h2 className="mb-4 text-lg font-semibold text-white">
           Activity Timeline
         </h2>
@@ -165,22 +164,17 @@ export function Timeline({ events }: TimelineProps) {
   }
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+    <div className="rounded-xl border border-slate-800 bg-[#111527] p-6">
       <h2 className="mb-6 text-lg font-semibold text-white">
         Activity Timeline
       </h2>
       <div className="relative">
-        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-white/10" />
+        <div className="absolute top-0 bottom-0 left-6 w-0.5 bg-slate-800" />
         <div className="space-y-6">
-          {events.map((event, index) => (
-            <motion.div
-              key={event.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
+          {events.map((event) => (
+            <div key={event.id}>
               <div className="relative flex gap-4">
-                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-white/10 bg-gray-950">
+                <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-slate-800 bg-[#0b0e1a]">
                   <div
                     className={`flex h-5 w-5 items-center justify-center ${
                       event.status === 'delivered'
@@ -275,7 +269,7 @@ export function Timeline({ events }: TimelineProps) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

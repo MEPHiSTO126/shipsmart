@@ -7,7 +7,7 @@ interface RouteInfoProps {
 
 export function RouteInfo({ shipment }: RouteInfoProps) {
   return (
-    <div className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.055] p-6 shadow-xl shadow-black/30 backdrop-blur-md">
+    <div className="space-y-4 rounded-xl border border-slate-800 bg-[#111527] p-6">
       <h3 className="text-lg font-semibold text-white">Route Information</h3>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>

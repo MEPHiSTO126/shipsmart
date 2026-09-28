@@ -19,9 +19,9 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
       <Container className="py-16">
         <div className="mx-auto max-w-md text-center">
           {/* Error icon */}
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-500/10">
             <svg
-              className="h-10 w-10 text-red-600"
+              className="h-10 w-10 text-red-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -36,15 +36,15 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
             </svg>
           </div>
 
-          <h1 className="mb-2 text-2xl font-bold text-gray-900">
+          <h1 className="mb-2 text-2xl font-bold text-white">
             Something went wrong
           </h1>
-          <p className="mb-2 text-gray-600">
+          <p className="mb-2 text-slate-400">
             We couldn&apos;t load the shipments dashboard. This might be a
             temporary network issue.
           </p>
           {process.env.NODE_ENV === 'development' && error?.message && (
-            <p className="mb-6 rounded-md bg-red-50 px-3 py-2 font-mono text-xs text-red-700">
+            <p className="mb-6 rounded-md bg-red-500/10 px-3 py-2 font-mono text-xs text-red-300">
               {error.message}
             </p>
           )}
@@ -72,7 +72,7 @@ export default function ShipmentsError({ error, reset }: ErrorProps) {
             </button>
             <button
               onClick={() => (window.location.href = '/')}
-              className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-6 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
+              className="inline-flex items-center justify-center rounded-lg border border-slate-800 bg-[#111527] px-6 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
             >
               Go home
             </button>

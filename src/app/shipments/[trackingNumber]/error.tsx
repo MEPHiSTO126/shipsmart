@@ -23,10 +23,10 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
       <Container className="py-16">
         <div className="mx-auto max-w-md text-center">
           {/* Icon */}
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-500/10">
             {isNotFound ? (
               <svg
-                className="h-10 w-10 text-red-600"
+                className="h-10 w-10 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
               </svg>
             ) : (
               <svg
-                className="h-10 w-10 text-red-600"
+                className="h-10 w-10 text-red-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -57,17 +57,17 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
             )}
           </div>
 
-          <h1 className="mb-2 text-2xl font-bold text-gray-900">
+          <h1 className="mb-2 text-2xl font-bold text-white">
             {isNotFound ? 'Shipment not found' : 'Something went wrong'}
           </h1>
-          <p className="mb-6 text-gray-600">
+          <p className="mb-6 text-slate-400">
             {isNotFound
               ? "We couldn't find a shipment with that tracking number. It may not exist or the link may be incorrect."
               : "We couldn't load this shipment. This might be a temporary network issue."}
           </p>
 
           {process.env.NODE_ENV === 'development' && error?.message && (
-            <p className="mb-6 rounded-md bg-red-50 px-3 py-2 font-mono text-xs text-red-700">
+            <p className="mb-6 rounded-md bg-red-500/10 px-3 py-2 font-mono text-xs text-red-300">
               {error.message}
             </p>
           )}
@@ -97,7 +97,7 @@ export default function ShipmentDetailError({ error, reset }: ErrorProps) {
             )}
             <Link
               href="/shipments"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md px-6 py-2.5 text-sm font-semibold text-slate-200 shadow-md transition-all duration-200 hover:bg-white/[0.12] hover:text-white hover:border-white/20"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-800 bg-[#111527] px-6 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-slate-700 hover:text-white"
             >
               <svg
                 className="h-4 w-4"
